@@ -1,6 +1,25 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 @use "page.scss";
 
-p {
-    font-weight: bold;
+.security-vulnerabilities__header {
+    margin-block-end: var(--pf-t--global--spacer--md);
+}
+
+.security-vulnerabilities__count-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--pf-t--global--spacer--sm);
+}
+
+.security-vulnerabilities__system-info {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--pf-t--global--spacer--md);
+    row-gap: var(--pf-t--global--spacer--xs);
+    margin-block-end: var(--pf-t--global--spacer--sm);
+}
+
+.security-vulnerabilities__error {
+    margin: 0;
+    white-space: pre-wrap;
 }
