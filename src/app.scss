@@ -1,14 +1,62 @@
 // SPDX-License-Identifier: LGPL-2.1-or-later
 @use "page.scss";
 
+.security-vulnerabilities {
+    --security-vuln-accent: var(--pf-t--global--color--brand--default);
+    --security-vuln-accent-hover: var(--pf-t--global--color--brand--hover);
+    --security-vuln-accent-clicked: var(--pf-t--global--color--brand--clicked);
+    --security-vuln-accent-soft: color-mix(in oklch, var(--security-vuln-accent) 12%, transparent);
+
+    --pf-v6-c-tabs__item--m-current__link--Color: var(--security-vuln-accent);
+    --pf-v6-c-tabs__item--m-current__link--after--BorderColor: var(--security-vuln-accent);
+    --pf-v6-c-button--m-primary--BackgroundColor: var(--security-vuln-accent);
+    --pf-v6-c-button--m-primary--hover--BackgroundColor: var(--security-vuln-accent-hover);
+    --pf-v6-c-button--m-primary--m-clicked--BackgroundColor: var(--security-vuln-accent-clicked);
+    --pf-v6-c-button--m-secondary--Color: var(--security-vuln-accent);
+    --pf-v6-c-button--m-secondary--BorderColor: var(--security-vuln-accent);
+    --pf-v6-c-button--m-secondary__icon--Color: var(--security-vuln-accent);
+    --pf-v6-c-button--m-secondary--hover--Color: var(--security-vuln-accent-hover);
+    --pf-v6-c-button--m-secondary--hover--BorderColor: var(--security-vuln-accent-hover);
+    --pf-v6-c-button--m-secondary--hover__icon--Color: var(--security-vuln-accent-hover);
+    --pf-v6-c-button--m-secondary--m-clicked--Color: var(--security-vuln-accent-clicked);
+    --pf-v6-c-button--m-secondary--m-clicked--BorderColor: var(--security-vuln-accent-clicked);
+    --pf-v6-c-button--m-secondary--m-clicked__icon--Color: var(--security-vuln-accent-clicked);
+}
+
+.security-vulnerabilities--suse {
+    --security-vuln-accent: var(--pf-t--global--color--status--success--default);
+    --security-vuln-accent-hover: var(--pf-t--global--color--status--success--hover);
+    --security-vuln-accent-clicked: var(--pf-t--global--color--status--success--clicked);
+}
+
+.security-vulnerabilities--ubuntu {
+    --security-vuln-accent: var(--pf-t--global--color--status--warning--default);
+    --security-vuln-accent-hover: var(--pf-t--global--color--status--warning--hover);
+    --security-vuln-accent-clicked: var(--pf-t--global--color--status--warning--clicked);
+}
+
+.security-vulnerabilities--rhel {
+    --security-vuln-accent: var(--pf-t--global--color--status--danger--default);
+    --security-vuln-accent-hover: var(--pf-t--global--color--status--danger--hover);
+    --security-vuln-accent-clicked: var(--pf-t--global--color--status--danger--clicked);
+}
+
 .security-vulnerabilities__header {
     margin-block-end: var(--pf-t--global--spacer--md);
+    border: var(--pf-t--global--border--width--regular) solid var(--pf-t--global--border--color--default);
+    border-inline-start: var(--pf-t--global--border--width--extra-strong) solid var(--security-vuln-accent);
+    border-radius: var(--pf-t--global--border--radius--small);
+    background: linear-gradient(90deg, var(--security-vuln-accent-soft) 0%, transparent 55%);
 }
 
 .security-vulnerabilities__count-list {
     display: flex;
     flex-wrap: wrap;
     gap: var(--pf-t--global--spacer--sm);
+}
+
+.security-vulnerabilities__count-list .pf-v6-c-label {
+    border: var(--pf-t--global--border--width--regular) solid var(--pf-t--global--border--color--default);
 }
 
 .security-vulnerabilities__system-info {
@@ -19,7 +67,40 @@
     margin-block-end: var(--pf-t--global--spacer--sm);
 }
 
+.security-vulnerabilities__tabs {
+    --pf-v6-c-tabs--before--BorderColor: var(--pf-t--global--border--color--default);
+}
+
+.security-vulnerabilities__panel {
+    border: var(--pf-t--global--border--width--regular) solid var(--pf-t--global--border--color--default);
+    border-radius: var(--pf-t--global--border--radius--small);
+}
+
+.security-vulnerabilities__empty-state {
+    background: var(--pf-t--global--background--color--secondary--default);
+    border-radius: var(--pf-t--global--border--radius--small);
+}
+
+.security-vulnerabilities__empty-state .pf-v6-c-empty-state__icon {
+    color: var(--security-vuln-accent);
+}
+
+.security-vulnerabilities__alert {
+    border-inline-start: var(--pf-t--global--border--width--extra-strong) solid var(--pf-t--global--border--color--status--danger--default);
+}
+
 .security-vulnerabilities__error {
     margin: 0;
     white-space: pre-wrap;
+}
+
+.security-vulnerabilities__findings {
+    margin-block-start: var(--pf-t--global--spacer--sm);
+}
+
+.security-vulnerabilities__finding-item {
+    padding: var(--pf-t--global--spacer--sm);
+    border: var(--pf-t--global--border--width--regular) solid var(--pf-t--global--border--color--default);
+    border-radius: var(--pf-t--global--border--radius--small);
+    background: var(--pf-t--global--background--color--secondary--default);
 }

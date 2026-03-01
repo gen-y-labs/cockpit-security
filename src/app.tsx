@@ -20,7 +20,7 @@ import { Tab, Tabs } from "@patternfly/react-core/dist/esm/components/Tabs/index
 import { SearchIcon } from "@patternfly/react-icons";
 
 import cockpit from 'cockpit';
-import type { SecurityReport, SecuritySummary } from './security-report';
+import type { SecurityReport, SecuritySeverity, SecuritySummary } from './security-report';
 import { getNativeProvider } from './providers/native-provider';
 import { loadSystemInfo } from './system-info';
 
@@ -61,6 +61,20 @@ function getStatusPill(counts: SecuritySummary) {
         return { color: "grey" as const, text: _("Unknown severity") };
 
     return { color: "green" as const, text: _("No pending vulnerabilities") };
+}
+
+function getOsAccentClass(osId: string, osName: string): string {
+    const id = osId.toLowerCase();
+    const name = osName.toLowerCase();
+
+    if (id.includes("suse") || id.includes("sles") || name.includes("suse"))
+        return "security-vulnerabilities--suse";
+    if (id.includes("ubuntu") || id.includes("debian") || name.includes("ubuntu"))
+        return "security-vulnerabilities--ubuntu";
+    if (id.includes("rhel") || id.includes("fedora") || id.includes("centos"))
+        return "security-vulnerabilities--rhel";
+
+    return "";
 }
 
 function SummaryHeader({
@@ -126,10 +140,22 @@ function SummaryHeader({
 
 function EmptyTabState({ title, body }: { title: string; body: string }) {
     return (
-        <EmptyState headingLevel="h2" titleText={title} icon={SearchIcon}>
+        <EmptyState className="security-vulnerabilities__empty-state" headingLevel="h2" titleText={title} icon={SearchIcon}>
             <EmptyStateBody>{body}</EmptyStateBody>
         </EmptyState>
     );
+}
+
+function getSeverityLabelColor(severity: SecuritySeverity) {
+    if (severity === "critical")
+        return "red" as const;
+    if (severity === "high")
+        return "orange" as const;
+    if (severity === "medium")
+        return "gold" as const;
+    if (severity === "low")
+        return "blue" as const;
+    return "grey" as const;
 }
 
 interface NativeTabProps {
@@ -141,7 +167,7 @@ interface NativeTabProps {
 function NativeTabContent({ loading, error, report }: NativeTabProps) {
     if (loading) {
         return (
-            <EmptyState headingLevel="h2" titleText={_("Loading native security updates")} icon={Spinner}>
+            <EmptyState className="security-vulnerabilities__empty-state" headingLevel="h2" titleText={_("Loading native security updates")} icon={Spinner}>
                 <EmptyStateBody>{_("Running native security update query...")}</EmptyStateBody>
             </EmptyState>
         );
@@ -149,7 +175,7 @@ function NativeTabContent({ loading, error, report }: NativeTabProps) {
 
     if (error) {
         return (
-            <Alert isInline variant="danger" title={_("Loading native security updates failed")}>
+            <Alert className="security-vulnerabilities__alert" isInline variant="danger" title={_("Loading native security updates failed")}>
                 <pre className="security-vulnerabilities__error">{error}</pre>
             </Alert>
         );
@@ -169,10 +195,24 @@ function NativeTabContent({ loading, error, report }: NativeTabProps) {
             <Content component={ContentVariants.p}>
                 {cockpit.format(_("Found $0 native security patches."), report.summary.total)}
             </Content>
-            <List>
+            <List className="security-vulnerabilities__findings">
                 {report.findings.map(finding => (
-                    <ListItem key={finding.id}>
-                        {cockpit.format(_("$0 [$1] - $2"), finding.id, finding.severity, finding.summary)}
+                    <ListItem key={finding.id} className="security-vulnerabilities__finding-item">
+                        <Flex justifyContent={{ default: "justifyContentSpaceBetween" }} alignItems={{ default: "alignItemsCenter" }}>
+                            <FlexItem>
+                                <Content component={ContentVariants.small}>
+                                    {finding.id}
+                                </Content>
+                            </FlexItem>
+                            <FlexItem>
+                                <Label isCompact color={getSeverityLabelColor(finding.severity)}>
+                                    {finding.severity}
+                                </Label>
+                            </FlexItem>
+                        </Flex>
+                        <Content component={ContentVariants.small}>
+                            {finding.summary}
+                        </Content>
                     </ListItem>
                 ))}
             </List>
@@ -185,6 +225,7 @@ export const Application = () => {
     const [activeTab, setActiveTab] = useState<VulnerabilityTab>('native');
     const [hostname, setHostname] = useState(_("Unknown"));
     const [osName, setOsName] = useState(_("Unknown"));
+    const [osId, setOsId] = useState("");
     const [nativeLoading, setNativeLoading] = useState(true);
     const [nativeError, setNativeError] = useState<string | null>(null);
     const [nativeReport, setNativeReport] = useState<SecurityReport | null>(null);
@@ -199,6 +240,7 @@ export const Application = () => {
 
             setHostname(info.hostname);
             setOsName(info.osName);
+            setOsId(info.osId);
         });
 
         return () => {
@@ -246,6 +288,7 @@ export const Application = () => {
     }, []);
 
     const summaryCounts = nativeReport?.summary || EMPTY_SUMMARY;
+    const osAccentClass = getOsAccentClass(osId, osName);
 
     const downloadReportJson = () => {
         if (!nativeReport)
@@ -263,7 +306,7 @@ export const Application = () => {
     };
 
     return (
-        <Page>
+        <Page className={`pf-m-no-sidebar security-vulnerabilities ${osAccentClass}`.trim()}>
             <PageSection hasBodyWrapper={false}>
                 <SummaryHeader
                     hostname={hostname}
@@ -278,19 +321,20 @@ export const Application = () => {
             </PageSection>
             <PageSection hasBodyWrapper={false}>
                 <Tabs
+                    className="security-vulnerabilities__tabs"
                     activeKey={activeTab}
                     onSelect={(_event, tabKey) => setActiveTab(tabKey as VulnerabilityTab)}
                     aria-label={_("Vulnerability providers")}
                 >
                     <Tab eventKey="native" title={_("Native")}>
-                        <Card>
+                        <Card className="security-vulnerabilities__panel">
                             <CardBody>
                                 <NativeTabContent loading={nativeLoading} error={nativeError} report={nativeReport} />
                             </CardBody>
                         </Card>
                     </Tab>
                     <Tab eventKey="trivy" title={_("Trivy")}>
-                        <Card>
+                        <Card className="security-vulnerabilities__panel">
                             <CardBody>
                                 <EmptyTabState
                                     title={_("No deep scan results yet")}

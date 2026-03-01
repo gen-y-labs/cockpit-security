@@ -9,6 +9,7 @@ const UNKNOWN = cockpit.gettext("Unknown");
 export interface SystemInfo {
     hostname: string;
     osName: string;
+    osId: string;
 }
 
 function unquote(value: string): string {
@@ -55,9 +56,11 @@ export async function loadSystemInfo(): Promise<SystemInfo> {
 
     const osRelease = parseOsRelease(osReleaseContent);
     const osName = osRelease.PRETTY_NAME || osRelease.NAME || UNKNOWN;
+    const osId = (osRelease.ID || "").toLowerCase();
 
     return {
         hostname: hostname || UNKNOWN,
         osName,
+        osId,
     };
 }
