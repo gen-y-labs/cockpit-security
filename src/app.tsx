@@ -4,7 +4,7 @@
  * Copyright (C) 2017 Red Hat, Inc.
  */
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { Alert } from "@patternfly/react-core/dist/esm/components/Alert/index.js";
 import { Button } from "@patternfly/react-core/dist/esm/components/Button/index.js";
@@ -12,11 +12,13 @@ import { Card, CardBody, CardTitle } from "@patternfly/react-core/dist/esm/compo
 import { Content, ContentVariants } from "@patternfly/react-core/dist/esm/components/Content/index.js";
 import { EmptyState, EmptyStateBody } from "@patternfly/react-core/dist/esm/components/EmptyState/index.js";
 import { Flex, FlexItem } from "@patternfly/react-core/dist/esm/layouts/Flex/index.js";
+import { Grid, GridItem } from "@patternfly/react-core/dist/esm/layouts/Grid/index.js";
 import { Label } from "@patternfly/react-core/dist/esm/components/Label/index.js";
-import { List, ListItem } from "@patternfly/react-core/dist/esm/components/List/index.js";
+import { Nav, NavItem, NavList } from "@patternfly/react-core/dist/esm/components/Nav/index.js";
 import { Page, PageSection } from "@patternfly/react-core/dist/esm/components/Page/index.js";
 import { Spinner } from "@patternfly/react-core/dist/esm/components/Spinner/index.js";
-import { Tab, Tabs } from "@patternfly/react-core/dist/esm/components/Tabs/index.js";
+import { SearchInput } from "@patternfly/react-core/dist/esm/components/SearchInput/index.js";
+import { Toolbar, ToolbarContent, ToolbarItem } from "@patternfly/react-core/dist/esm/components/Toolbar/index.js";
 import { SearchIcon } from "@patternfly/react-icons";
 
 import cockpit from 'cockpit';
@@ -27,41 +29,6 @@ import { loadSystemInfo } from './system-info';
 const _ = cockpit.gettext;
 
 type VulnerabilityTab = 'native' | 'trivy';
-
-const EMPTY_SUMMARY: SecuritySummary = {
-    critical: 0,
-    high: 0,
-    medium: 0,
-    low: 0,
-    unknown: 0,
-    total: 0,
-};
-
-interface SummaryHeaderProps {
-    hostname: string;
-    osName: string;
-    lastUpdated: string;
-    counts: SecuritySummary;
-    loading: boolean;
-    onRefresh: () => void;
-    onDownloadJson: () => void;
-    canDownload: boolean;
-}
-
-function getStatusPill(counts: SecuritySummary) {
-    if (counts.critical > 0)
-        return { color: "red" as const, text: _("Critical vulnerabilities") };
-    if (counts.high > 0)
-        return { color: "orange" as const, text: _("High vulnerabilities") };
-    if (counts.medium > 0)
-        return { color: "gold" as const, text: _("Medium vulnerabilities") };
-    if (counts.low > 0)
-        return { color: "blue" as const, text: _("Low vulnerabilities") };
-    if (counts.unknown > 0)
-        return { color: "grey" as const, text: _("Unknown severity") };
-
-    return { color: "green" as const, text: _("No pending vulnerabilities") };
-}
 
 function getOsAccentClass(osId: string, osName: string): string {
     const id = osId.toLowerCase();
@@ -75,67 +42,6 @@ function getOsAccentClass(osId: string, osName: string): string {
         return "security-vulnerabilities--rhel";
 
     return "";
-}
-
-function SummaryHeader({
-    hostname,
-    osName,
-    lastUpdated,
-    counts,
-    loading,
-    onRefresh,
-    onDownloadJson,
-    canDownload,
-}: SummaryHeaderProps) {
-    const status = getStatusPill(counts);
-
-    return (
-        <Card isPlain className="security-vulnerabilities__header">
-            <CardTitle>
-                <Flex justifyContent={{ default: "justifyContentSpaceBetween" }} alignItems={{ default: "alignItemsCenter" }}>
-                    <FlexItem>
-                        <Content component={ContentVariants.h1}>{_("Vulnerabilities")}</Content>
-                    </FlexItem>
-                    <FlexItem>
-                        <Flex spaceItems={{ default: "spaceItemsSm" }} alignItems={{ default: "alignItemsCenter" }}>
-                            <FlexItem>
-                                <Label color={status.color} isCompact>{status.text}</Label>
-                            </FlexItem>
-                            <FlexItem>
-                                <Button variant="secondary" onClick={onRefresh} isDisabled={loading}>
-                                    {_("Refresh")}
-                                </Button>
-                            </FlexItem>
-                            <FlexItem>
-                                <Button variant="secondary" onClick={onDownloadJson} isDisabled={!canDownload}>
-                                    {_("Download JSON")}
-                                </Button>
-                            </FlexItem>
-                        </Flex>
-                    </FlexItem>
-                </Flex>
-            </CardTitle>
-            <CardBody>
-                <div className="security-vulnerabilities__system-info">
-                    <Content component={ContentVariants.small}>
-                        {cockpit.format(_("Host: $0"), hostname)}
-                    </Content>
-                    <Content component={ContentVariants.small}>
-                        {cockpit.format(_("OS: $0"), osName)}
-                    </Content>
-                    <Content component={ContentVariants.small}>
-                        {cockpit.format(_("Last updated: $0"), lastUpdated)}
-                    </Content>
-                </div>
-                <div className="security-vulnerabilities__count-list" role="list" aria-label={_("Vulnerability summary") }>
-                    <Label color="red" isCompact role="listitem">{cockpit.format(_("Critical: $0"), counts.critical)}</Label>
-                    <Label color="orange" isCompact role="listitem">{cockpit.format(_("High: $0"), counts.high)}</Label>
-                    <Label color="gold" isCompact role="listitem">{cockpit.format(_("Medium: $0"), counts.medium)}</Label>
-                    <Label color="blue" isCompact role="listitem">{cockpit.format(_("Low: $0"), counts.low)}</Label>
-                </div>
-            </CardBody>
-        </Card>
-    );
 }
 
 function EmptyTabState({ title, body }: { title: string; body: string }) {
@@ -158,13 +64,105 @@ function getSeverityLabelColor(severity: SecuritySeverity) {
     return "grey" as const;
 }
 
+type SeverityFilter = 'all' | SecuritySeverity;
+
+function createSummaryFromFindings(findings: SecurityReport["findings"]): SecuritySummary {
+    const summary: SecuritySummary = {
+        critical: 0,
+        high: 0,
+        medium: 0,
+        low: 0,
+        unknown: 0,
+        total: findings.length,
+    };
+
+    for (const finding of findings)
+        summary[finding.severity] += 1;
+
+    return summary;
+}
+
+function SeverityCard({
+    label,
+    count,
+    color,
+    active,
+    onClick,
+}: {
+    label: string;
+    count: number;
+    color: "red" | "orange" | "gold" | "blue" | "grey";
+    active: boolean;
+    onClick: () => void;
+}) {
+    return (
+        <button type="button" className={`security-vulnerabilities__severity-card ${active ? "pf-m-active" : ""}`} onClick={onClick}>
+            <Label color={color} isCompact>{label}</Label>
+            <Content component={ContentVariants.h2}>{count.toString()}</Content>
+        </button>
+    );
+}
+
 interface NativeTabProps {
     loading: boolean;
     error: string | null;
     report: SecurityReport | null;
+    lastUpdated: string;
+    onRefresh: () => void;
+    onDownloadJson: () => void;
+    canDownload: boolean;
 }
 
-function NativeTabContent({ loading, error, report }: NativeTabProps) {
+function NativeTabContent({ loading, error, report, lastUpdated, onRefresh, onDownloadJson, canDownload }: NativeTabProps) {
+    const [searchFilter, setSearchFilter] = useState("");
+    const [severityFilter, setSeverityFilter] = useState<SeverityFilter>("all");
+    const [statusFilter, setStatusFilter] = useState("all");
+    const [sourceFilter, setSourceFilter] = useState("all");
+
+    const statusOptions = useMemo(() => {
+        if (!report)
+            return [];
+
+        return [...new Set(report.findings.map(finding => finding.status))].sort();
+    }, [report]);
+
+    const sourceOptions = useMemo(() => {
+        if (!report)
+            return [];
+
+        return [...new Set(report.findings.map(finding => finding.source))].sort();
+    }, [report]);
+
+    const filteredFindings = useMemo(() => {
+        if (!report)
+            return [];
+
+        const search = searchFilter.trim().toLowerCase();
+
+        return report.findings.filter(finding => {
+            if (severityFilter !== "all" && finding.severity !== severityFilter)
+                return false;
+            if (statusFilter !== "all" && finding.status !== statusFilter)
+                return false;
+            if (sourceFilter !== "all" && finding.source !== sourceFilter)
+                return false;
+            if (!search)
+                return true;
+
+            return finding.id.toLowerCase().includes(search) ||
+                finding.summary.toLowerCase().includes(search) ||
+                finding.status.toLowerCase().includes(search) ||
+                finding.source.toLowerCase().includes(search);
+        });
+    }, [report, searchFilter, severityFilter, statusFilter, sourceFilter]);
+
+    const onClearAllFilters = () => {
+        setSearchFilter("");
+        setSeverityFilter("all");
+        setStatusFilter("all");
+        setSourceFilter("all");
+    };
+
     if (loading) {
         return (
             <EmptyState className="security-vulnerabilities__empty-state" headingLevel="h2" titleText={_("Loading native security updates")} icon={Spinner}>
@@ -190,32 +188,162 @@ function NativeTabContent({ loading, error, report }: NativeTabProps) {
         );
     }
 
+    const filteredSummary = createSummaryFromFindings(filteredFindings);
     return (
         <>
-            <Content component={ContentVariants.p}>
-                {cockpit.format(_("Found $0 native security patches."), report.summary.total)}
+            <Flex className="security-vulnerabilities__tab-actions" justifyContent={{ default: "justifyContentFlexEnd" }} spaceItems={{ default: "spaceItemsSm" }}>
+                <FlexItem>
+                    <Content component={ContentVariants.small}>
+                        {cockpit.format(_("Last updated: $0"), lastUpdated)}
+                    </Content>
+                </FlexItem>
+                <FlexItem>
+                    <Button variant="secondary" onClick={onRefresh} isDisabled={loading}>
+                        {_("Refresh")}
+                    </Button>
+                </FlexItem>
+                <FlexItem>
+                    <Button variant="secondary" onClick={onDownloadJson} isDisabled={!canDownload}>
+                        {_("Download JSON")}
+                    </Button>
+                </FlexItem>
+            </Flex>
+            <Grid hasGutter className="security-vulnerabilities__severity-grid">
+                <GridItem md={2}>
+                    <SeverityCard
+                        label={_("All")}
+                        count={report.summary.total}
+                        color="grey"
+                        active={severityFilter === "all"}
+                        onClick={() => setSeverityFilter("all")}
+                    />
+                </GridItem>
+                <GridItem md={2}>
+                    <SeverityCard
+                        label={_("Critical")}
+                        count={report.summary.critical}
+                        color="red"
+                        active={severityFilter === "critical"}
+                        onClick={() => setSeverityFilter(prev => prev === "critical" ? "all" : "critical")}
+                    />
+                </GridItem>
+                <GridItem md={2}>
+                    <SeverityCard
+                        label={_("High")}
+                        count={report.summary.high}
+                        color="orange"
+                        active={severityFilter === "high"}
+                        onClick={() => setSeverityFilter(prev => prev === "high" ? "all" : "high")}
+                    />
+                </GridItem>
+                <GridItem md={2}>
+                    <SeverityCard
+                        label={_("Medium")}
+                        count={report.summary.medium}
+                        color="gold"
+                        active={severityFilter === "medium"}
+                        onClick={() => setSeverityFilter(prev => prev === "medium" ? "all" : "medium")}
+                    />
+                </GridItem>
+                <GridItem md={2}>
+                    <SeverityCard
+                        label={_("Low")}
+                        count={report.summary.low}
+                        color="blue"
+                        active={severityFilter === "low"}
+                        onClick={() => setSeverityFilter(prev => prev === "low" ? "all" : "low")}
+                    />
+                </GridItem>
+            </Grid>
+
+            <Toolbar
+                clearAllFilters={onClearAllFilters}
+                className="pf-m-sticky-top ct-compact services-toolbar security-vulnerabilities__filters-toolbar"
+                numberOfFiltersText={n => cockpit.format(_("$0 filters applied"), n)}
+            >
+                <ToolbarContent>
+                    <ToolbarItem>
+                        <SearchInput
+                            id="security-text-filter"
+                            className="services-text-filter"
+                            placeholder={_("Filter by package ID or summary")}
+                            value={searchFilter}
+                            onChange={(_event, value) => setSearchFilter(value)}
+                            onClear={() => setSearchFilter("")}
+                        />
+                    </ToolbarItem>
+                    <ToolbarItem>
+                        <select className="pf-v6-c-form-control" value={severityFilter} onChange={event => setSeverityFilter(event.currentTarget.value as SeverityFilter)}>
+                            <option value="all">{_("All severities")}</option>
+                            <option value="critical">{_("Critical")}</option>
+                            <option value="high">{_("High")}</option>
+                            <option value="medium">{_("Medium")}</option>
+                            <option value="low">{_("Low")}</option>
+                            <option value="unknown">{_("Unknown")}</option>
+                        </select>
+                    </ToolbarItem>
+                    <ToolbarItem>
+                        <select className="pf-v6-c-form-control" value={statusFilter} onChange={event => setStatusFilter(event.currentTarget.value)}>
+                            <option value="all">{_("All statuses")}</option>
+                            {statusOptions.map(status => (
+                                <option key={status} value={status}>{status}</option>
+                            ))}
+                        </select>
+                    </ToolbarItem>
+                    <ToolbarItem>
+                        <select className="pf-v6-c-form-control" value={sourceFilter} onChange={event => setSourceFilter(event.currentTarget.value)}>
+                            <option value="all">{_("All sources")}</option>
+                            {sourceOptions.map(source => (
+                                <option key={source} value={source}>{source}</option>
+                            ))}
+                        </select>
+                    </ToolbarItem>
+                </ToolbarContent>
+            </Toolbar>
+
+            <Content className="security-vulnerabilities__filtered-summary" component={ContentVariants.small}>
+                {cockpit.format(_("Showing $0 of $1 findings"), filteredFindings.length, report.summary.total)}
             </Content>
-            <List className="security-vulnerabilities__findings">
-                {report.findings.map(finding => (
-                    <ListItem key={finding.id} className="security-vulnerabilities__finding-item">
-                        <Flex justifyContent={{ default: "justifyContentSpaceBetween" }} alignItems={{ default: "alignItemsCenter" }}>
-                            <FlexItem>
-                                <Content component={ContentVariants.small}>
-                                    {finding.id}
-                                </Content>
-                            </FlexItem>
-                            <FlexItem>
-                                <Label isCompact color={getSeverityLabelColor(finding.severity)}>
-                                    {finding.severity}
-                                </Label>
-                            </FlexItem>
-                        </Flex>
-                        <Content component={ContentVariants.small}>
-                            {finding.summary}
-                        </Content>
-                    </ListItem>
-                ))}
-            </List>
+
+            {filteredFindings.length === 0
+                ? <EmptyTabState
+                    title={_("No matching findings")}
+                    body={_("Try adjusting search text or filter selections.")}
+                  />
+                : <div className="security-vulnerabilities__list-wrap">
+                    <div className="security-vulnerabilities__totals">
+                        {cockpit.format(_("C:$0 H:$1 M:$2 L:$3 Unknown:$4"), filteredSummary.critical, filteredSummary.high, filteredSummary.medium, filteredSummary.low, filteredSummary.unknown)}
+                    </div>
+                    <table className="pf-v6-c-table services-list security-vulnerabilities__list" aria-label={_("Native vulnerability findings")}>
+                        <tbody>
+                            {filteredFindings.map(finding => (
+                                <tr key={`${finding.id}-${finding.source}-${finding.status}`}>
+                                    <td className="security-vulnerabilities__finding-main-cell">
+                                        <div className="security-vulnerabilities__finding-inline">
+                                            <span className="security-vulnerabilities__id">{finding.id}</span>
+                                            <span className="security-vulnerabilities__finding-summary">{finding.summary}</span>
+                                        </div>
+                                    </td>
+                                    <td className="security-vulnerabilities__finding-meta-cell">
+                                        <Flex spaceItems={{ default: "spaceItemsSm" }} alignItems={{ default: "alignItemsCenter" }} className="security-vulnerabilities__finding-meta">
+                                            <FlexItem>
+                                                <Label isCompact color={getSeverityLabelColor(finding.severity)}>
+                                                    {finding.severity}
+                                                </Label>
+                                            </FlexItem>
+                                            <FlexItem>
+                                                <Label isCompact color="grey">{finding.source}</Label>
+                                            </FlexItem>
+                                            <FlexItem>
+                                                <Label isCompact color="grey">{finding.status}</Label>
+                                            </FlexItem>
+                                        </Flex>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                  </div>}
         </>
     );
 }
@@ -223,7 +351,6 @@ function NativeTabContent({ loading, error, report }: NativeTabProps) {
 export const Application = () => {
     const mountedRef = useRef(true);
     const [activeTab, setActiveTab] = useState<VulnerabilityTab>('native');
-    const [hostname, setHostname] = useState(_("Unknown"));
     const [osName, setOsName] = useState(_("Unknown"));
     const [osId, setOsId] = useState("");
     const [nativeLoading, setNativeLoading] = useState(true);
@@ -238,7 +365,6 @@ export const Application = () => {
             if (!mounted)
                 return;
 
-            setHostname(info.hostname);
             setOsName(info.osName);
             setOsId(info.osId);
         });
@@ -287,7 +413,6 @@ export const Application = () => {
         };
     }, []);
 
-    const summaryCounts = nativeReport?.summary || EMPTY_SUMMARY;
     const osAccentClass = getOsAccentClass(osId, osName);
 
     const downloadReportJson = () => {
@@ -308,42 +433,43 @@ export const Application = () => {
     return (
         <Page className={`pf-m-no-sidebar security-vulnerabilities ${osAccentClass}`.trim()}>
             <PageSection hasBodyWrapper={false}>
-                <SummaryHeader
-                    hostname={hostname}
-                    osName={osName}
-                    lastUpdated={lastUpdated}
-                    counts={summaryCounts}
-                    loading={nativeLoading}
-                    onRefresh={loadNativeReport}
-                    onDownloadJson={downloadReportJson}
-                    canDownload={nativeReport !== null}
-                />
-            </PageSection>
-            <PageSection hasBodyWrapper={false}>
-                <Tabs
+                <Nav
+                    variant="horizontal-subnav"
                     className="security-vulnerabilities__tabs"
-                    activeKey={activeTab}
-                    onSelect={(_event, tabKey) => setActiveTab(tabKey as VulnerabilityTab)}
-                    aria-label={_("Vulnerability providers")}
+                    aria-label={_("Vulnerability providers navigation")}
+                    onSelect={(_event, result) => setActiveTab(result.itemId as VulnerabilityTab)}
                 >
-                    <Tab eventKey="native" title={_("Native")}>
-                        <Card className="security-vulnerabilities__panel">
-                            <CardBody>
-                                <NativeTabContent loading={nativeLoading} error={nativeError} report={nativeReport} />
-                            </CardBody>
-                        </Card>
-                    </Tab>
-                    <Tab eventKey="trivy" title={_("Trivy")}>
-                        <Card className="security-vulnerabilities__panel">
-                            <CardBody>
-                                <EmptyTabState
-                                    title={_("No deep scan results yet")}
-                                    body={_("Trivy scan integration will appear here in a later phase.")}
-                                />
-                            </CardBody>
-                        </Card>
-                    </Tab>
-                </Tabs>
+                    <NavList>
+                        <NavItem itemId="native" preventDefault isActive={activeTab === "native"}>
+                            <Button variant="link" component="a">{_("Native")}</Button>
+                        </NavItem>
+                        <NavItem itemId="trivy" preventDefault isActive={activeTab === "trivy"}>
+                            <Button variant="link" component="a">{_("Trivy")}</Button>
+                        </NavItem>
+                    </NavList>
+                </Nav>
+                {activeTab === "native"
+                    ? <Card className="security-vulnerabilities__panel">
+                        <CardBody>
+                            <NativeTabContent
+                                loading={nativeLoading}
+                                error={nativeError}
+                                report={nativeReport}
+                                lastUpdated={lastUpdated}
+                                onRefresh={loadNativeReport}
+                                onDownloadJson={downloadReportJson}
+                                canDownload={nativeReport !== null}
+                            />
+                        </CardBody>
+                    </Card>
+                    : <Card className="security-vulnerabilities__panel">
+                        <CardBody>
+                            <EmptyTabState
+                                title={_("No deep scan results yet")}
+                                body={_("Trivy scan integration will appear here in a later phase.")}
+                            />
+                        </CardBody>
+                    </Card>}
             </PageSection>
         </Page>
     );
