@@ -35,6 +35,8 @@
         "key-spacing": "off",
         "no-console": "off",
         "quotes": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-uses-react": "off",
         "react/jsx-curly-spacing": "off",
         "react/jsx-indent-props": "off",
         "react/jsx-no-useless-fragment": "error",
