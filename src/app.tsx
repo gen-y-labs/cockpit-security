@@ -8,7 +8,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { Alert } from "@patternfly/react-core/dist/esm/components/Alert/index.js";
 import { Button } from "@patternfly/react-core/dist/esm/components/Button/index.js";
-import { Card, CardBody } from "@patternfly/react-core/dist/esm/components/Card/index.js";
 import { Content, ContentVariants } from "@patternfly/react-core/dist/esm/components/Content/index.js";
 import { EmptyState, EmptyStateBody } from "@patternfly/react-core/dist/esm/components/EmptyState/index.js";
 import { Flex, FlexItem } from "@patternfly/react-core/dist/esm/layouts/Flex/index.js";
@@ -30,6 +29,19 @@ import { loadSystemInfo } from './system-info';
 const _ = cockpit.gettext;
 
 type VulnerabilityTab = 'native' | 'trivy';
+type SourceBadgeTone = "green" | "blue" | "purple" | "grey";
+
+const SOURCE_LABELS: Record<string, string> = {
+    "native-zypper": "native-zypper",
+    "native-apt": "native-apt",
+    trivy: "trivy",
+};
+
+const SOURCE_BADGE_COLORS: Record<string, SourceBadgeTone> = {
+    "native-zypper": "green",
+    "native-apt": "blue",
+    trivy: "purple",
+};
 
 function getOsAccentClass(osId: string, osName: string): string {
     const id = osId.toLowerCase();
@@ -50,6 +62,60 @@ function EmptyTabState({ title, body }: { title: string; body: string }) {
         <EmptyState className="security-vulnerabilities__empty-state" headingLevel="h2" titleText={title} icon={SearchIcon}>
             <EmptyStateBody>{body}</EmptyStateBody>
         </EmptyState>
+    );
+}
+
+function getSourceLabel(source: string) {
+    return SOURCE_LABELS[source] || source;
+}
+
+function SourceBadge({ source }: { source: string }) {
+    const color = SOURCE_BADGE_COLORS[source] || "grey";
+
+    return (
+        <Label isCompact color={color}>
+            {getSourceLabel(source)}
+        </Label>
+    );
+}
+
+function SourceBadgeLegend({ sources }: { sources: string[] }) {
+    if (sources.length === 0)
+        return null;
+
+    return (
+        <Flex
+            className="security-vulnerabilities__source-legend"
+            spaceItems={{ default: "spaceItemsSm" }}
+            alignItems={{ default: "alignItemsCenter" }}
+        >
+            <FlexItem>
+                <Content component={ContentVariants.small} className="security-vulnerabilities__source-legend-label">
+                    {_("Sources")}
+                </Content>
+            </FlexItem>
+            {sources.map(source => (
+                <FlexItem key={source}>
+                    <SourceBadge source={source} />
+                </FlexItem>
+            ))}
+        </Flex>
+    );
+}
+
+function ErrorBanner({
+    title,
+    error,
+    children,
+}: {
+    title: string;
+    error?: string;
+    children?: React.ReactNode;
+}) {
+    return (
+        <Alert className="security-vulnerabilities__alert" isInline variant="danger" title={title}>
+            {children || <pre className="security-vulnerabilities__error">{error}</pre>}
+        </Alert>
     );
 }
 
@@ -134,6 +200,13 @@ function NativeTabContent({ loading, error, report, lastUpdated, onRefresh, onDo
         return [...new Set(report.findings.map(finding => finding.source))].sort();
     }, [report]);
 
+    const sourceLegendItems = useMemo(() => {
+        const sourceOrder = ["native-zypper", "native-apt", "trivy"];
+        const sources = sourceOptions.length > 0 ? sourceOptions : sourceOrder.filter(source => source.startsWith("native-"));
+
+        return [...sources].sort((a, b) => sourceOrder.indexOf(a) - sourceOrder.indexOf(b));
+    }, [sourceOptions]);
+
     const filteredFindings = useMemo(() => {
         if (!report)
             return [];
@@ -174,9 +247,7 @@ function NativeTabContent({ loading, error, report, lastUpdated, onRefresh, onDo
 
     if (error) {
         return (
-            <Alert className="security-vulnerabilities__alert" isInline variant="danger" title={_("Loading native security updates failed")}>
-                <pre className="security-vulnerabilities__error">{error}</pre>
-            </Alert>
+            <ErrorBanner title={_("Loading native security updates failed")} error={error} />
         );
     }
 
@@ -192,21 +263,28 @@ function NativeTabContent({ loading, error, report, lastUpdated, onRefresh, onDo
     const filteredSummary = createSummaryFromFindings(filteredFindings);
     return (
         <>
-            <Flex className="security-vulnerabilities__tab-actions" justifyContent={{ default: "justifyContentFlexEnd" }} spaceItems={{ default: "spaceItemsSm" }}>
+            <Flex className="security-vulnerabilities__header-controls" justifyContent={{ default: "justifyContentSpaceBetween" }} alignItems={{ default: "alignItemsCenter" }}>
                 <FlexItem>
-                    <Content component={ContentVariants.small}>
-                        {cockpit.format(_("Last updated: $0"), lastUpdated)}
-                    </Content>
+                    <SourceBadgeLegend sources={sourceLegendItems} />
                 </FlexItem>
                 <FlexItem>
-                    <Button variant="secondary" onClick={onRefresh} isDisabled={loading}>
-                        {_("Refresh")}
-                    </Button>
-                </FlexItem>
-                <FlexItem>
-                    <Button variant="secondary" onClick={onDownloadJson} isDisabled={!canDownload}>
-                        {_("Download JSON")}
-                    </Button>
+                    <Flex className="security-vulnerabilities__tab-actions" spaceItems={{ default: "spaceItemsSm" }} alignItems={{ default: "alignItemsCenter" }}>
+                        <FlexItem>
+                            <Content component={ContentVariants.small}>
+                                {cockpit.format(_("Last updated: $0"), lastUpdated)}
+                            </Content>
+                        </FlexItem>
+                        <FlexItem>
+                            <Button variant="secondary" onClick={onRefresh} isDisabled={loading}>
+                                {_("Refresh")}
+                            </Button>
+                        </FlexItem>
+                        <FlexItem>
+                            <Button variant="secondary" onClick={onDownloadJson} isDisabled={!canDownload}>
+                                {_("Download JSON")}
+                            </Button>
+                        </FlexItem>
+                    </Flex>
                 </FlexItem>
             </Flex>
             <Grid hasGutter className="security-vulnerabilities__severity-grid">
@@ -295,7 +373,7 @@ function NativeTabContent({ loading, error, report, lastUpdated, onRefresh, onDo
                         <select className="pf-v6-c-form-control" value={sourceFilter} onChange={event => setSourceFilter(event.currentTarget.value)}>
                             <option value="all">{_("All sources")}</option>
                             {sourceOptions.map(source => (
-                                <option key={source} value={source}>{source}</option>
+                                <option key={source} value={source}>{getSourceLabel(source)}</option>
                             ))}
                         </select>
                     </ToolbarItem>
@@ -335,7 +413,7 @@ function NativeTabContent({ loading, error, report, lastUpdated, onRefresh, onDo
                                                 </Label>
                                             </FlexItem>
                                             <FlexItem>
-                                                <Label isCompact color="grey">{finding.source}</Label>
+                                                <SourceBadge source={finding.source} />
                                             </FlexItem>
                                             <FlexItem>
                                                 <Label isCompact color="grey">{finding.status}</Label>
@@ -398,21 +476,28 @@ function TrivyTabContent({
 
     return (
         <>
-            <Flex className="security-vulnerabilities__tab-actions" justifyContent={{ default: "justifyContentFlexEnd" }} spaceItems={{ default: "spaceItemsSm" }}>
+            <Flex className="security-vulnerabilities__header-controls" justifyContent={{ default: "justifyContentSpaceBetween" }} alignItems={{ default: "alignItemsCenter" }}>
                 <FlexItem>
-                    <Content component={ContentVariants.small}>
-                        {cockpit.format(_("Last deep scan: $0"), lastUpdated)}
-                    </Content>
+                    <SourceBadgeLegend sources={["trivy"]} />
                 </FlexItem>
                 <FlexItem>
-                    <Button variant="primary" onClick={onRunScan} isLoading={loading}>
-                        {_("Run Deep Scan")}
-                    </Button>
-                </FlexItem>
-                <FlexItem>
-                    <Button variant="secondary" onClick={onDownloadJson} isDisabled={!canDownload}>
-                        {_("Download JSON")}
-                    </Button>
+                    <Flex className="security-vulnerabilities__tab-actions" spaceItems={{ default: "spaceItemsSm" }} alignItems={{ default: "alignItemsCenter" }}>
+                        <FlexItem>
+                            <Content component={ContentVariants.small}>
+                                {cockpit.format(_("Last deep scan: $0"), lastUpdated)}
+                            </Content>
+                        </FlexItem>
+                        <FlexItem>
+                            <Button variant="primary" onClick={onRunScan} isLoading={loading}>
+                                {_("Run Deep Scan")}
+                            </Button>
+                        </FlexItem>
+                        <FlexItem>
+                            <Button variant="secondary" onClick={onDownloadJson} isDisabled={!canDownload}>
+                                {_("Download JSON")}
+                            </Button>
+                        </FlexItem>
+                    </Flex>
                 </FlexItem>
             </Flex>
             {loading && !report && (
@@ -421,7 +506,7 @@ function TrivyTabContent({
                 </EmptyState>
             )}
             {error && (
-                <Alert className="security-vulnerabilities__alert" isInline variant="danger" title={_("Deep scan failed")}>
+                <ErrorBanner title={_("Deep scan failed")} error={error}>
                     {isMissingTrivyError
                         ? (
                             <Content component={ContentVariants.p}>
@@ -429,10 +514,8 @@ function TrivyTabContent({
                                 <a href={TRIVY_INSTALL_URL} target="_blank" rel="noreferrer">{TRIVY_INSTALL_URL}</a>
                             </Content>
                         )
-                        : (
-                            <pre className="security-vulnerabilities__error">{error}</pre>
-                        )}
-                </Alert>
+                        : undefined}
+                </ErrorBanner>
             )}
             {!loading && !error && !report && (
                 <EmptyTabState
@@ -551,7 +634,7 @@ function TrivyTabContent({
                                                         </Label>
                                                     </FlexItem>
                                                     <FlexItem>
-                                                        <Label isCompact color="grey">{finding.source}</Label>
+                                                        <SourceBadge source={finding.source} />
                                                     </FlexItem>
                                                     <FlexItem>
                                                         <Label isCompact color="grey">{finding.status}</Label>
@@ -567,6 +650,48 @@ function TrivyTabContent({
                 </>
             )}
         </>
+    );
+}
+
+function VulnerabilityTabs({
+    activeTab,
+    onChange,
+}: {
+    activeTab: VulnerabilityTab;
+    onChange: (tab: VulnerabilityTab) => void;
+}) {
+    const [activeItem, setActiveItem] = useState<VulnerabilityTab>(activeTab);
+    const tabLabels: Record<VulnerabilityTab, string> = {
+        native: _("Native"),
+        trivy: _("Trivy"),
+    };
+
+    useEffect(() => {
+        setActiveItem(activeTab);
+    }, [activeTab]);
+
+    return (
+        <Nav
+            variant="horizontal-subnav"
+            id="services-filter"
+            aria-label={_("Vulnerability providers navigation")}
+            onSelect={(_event, result) => {
+                const selectedTab = result.itemId as VulnerabilityTab;
+                setActiveItem(selectedTab);
+                onChange(selectedTab);
+            }}
+        >
+            <NavList>
+                {Object.keys(tabLabels).map(tabKey => {
+                    const tab = tabKey as VulnerabilityTab;
+                    return (
+                        <NavItem itemId={tab} key={tab} preventDefault isActive={activeItem === tab}>
+                            <Button variant="link" component="a">{tabLabels[tab]}</Button>
+                        </NavItem>
+                    );
+                })}
+            </NavList>
+        </Nav>
     );
 }
 
@@ -710,54 +835,36 @@ export const Application = () => {
 
     const activeTabContent = activeTab === "native"
         ? (
-            <Card className="security-vulnerabilities__panel">
-                <CardBody>
-                    <NativeTabContent
-                        loading={nativeLoading}
-                        error={nativeError}
-                        report={nativeReport}
-                        lastUpdated={lastUpdated}
-                        onRefresh={loadNativeReport}
-                        onDownloadJson={downloadReportJson}
-                        canDownload={nativeReport !== null}
-                    />
-                </CardBody>
-            </Card>
+            <section className="security-vulnerabilities__panel">
+                <NativeTabContent
+                    loading={nativeLoading}
+                    error={nativeError}
+                    report={nativeReport}
+                    lastUpdated={lastUpdated}
+                    onRefresh={loadNativeReport}
+                    onDownloadJson={downloadReportJson}
+                    canDownload={nativeReport !== null}
+                />
+            </section>
         )
         : (
-            <Card className="security-vulnerabilities__panel">
-                <CardBody>
-                    <TrivyTabContent
-                        loading={trivyLoading}
-                        error={trivyError}
-                        report={trivyReport}
-                        lastUpdated={trivyLastUpdated}
-                        onRunScan={runDeepScan}
-                        onDownloadJson={downloadTrivyJson}
-                        canDownload={trivyReport !== null}
-                    />
-                </CardBody>
-            </Card>
+            <section className="security-vulnerabilities__panel">
+                <TrivyTabContent
+                    loading={trivyLoading}
+                    error={trivyError}
+                    report={trivyReport}
+                    lastUpdated={trivyLastUpdated}
+                    onRunScan={runDeepScan}
+                    onDownloadJson={downloadTrivyJson}
+                    canDownload={trivyReport !== null}
+                />
+            </section>
         );
 
     return (
         <Page className={`pf-m-no-sidebar security-vulnerabilities ${osAccentClass}`.trim()}>
             <PageSection hasBodyWrapper={false}>
-                <Nav
-                    variant="horizontal-subnav"
-                    className="security-vulnerabilities__tabs"
-                    aria-label={_("Vulnerability providers navigation")}
-                    onSelect={(_event, result) => setActiveTab(result.itemId as VulnerabilityTab)}
-                >
-                    <NavList>
-                        <NavItem itemId="native" preventDefault isActive={activeTab === "native"}>
-                            <Button variant="link" component="a">{_("Native")}</Button>
-                        </NavItem>
-                        <NavItem itemId="trivy" preventDefault isActive={activeTab === "trivy"}>
-                            <Button variant="link" component="a">{_("Trivy")}</Button>
-                        </NavItem>
-                    </NavList>
-                </Nav>
+                <VulnerabilityTabs activeTab={activeTab} onChange={setActiveTab} />
                 {activeTabContent}
             </PageSection>
         </Page>

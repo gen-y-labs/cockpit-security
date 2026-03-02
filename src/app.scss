@@ -57,22 +57,33 @@
     row-gap: var(--pf-t--global--spacer--xs);
 }
 
-.security-vulnerabilities__tabs {
+#services-filter {
     margin-block-end: var(--pf-t--global--spacer--md);
 }
 
-.security-vulnerabilities__tabs .pf-v6-c-button.pf-m-link {
-    text-decoration: none;
-    color: inherit;
+.security-vulnerabilities__header-controls {
+    margin-block-end: var(--pf-t--global--spacer--md);
+    row-gap: var(--pf-t--global--spacer--sm);
 }
 
 .security-vulnerabilities__tab-actions {
-    margin-block-end: var(--pf-t--global--spacer--md);
+    row-gap: var(--pf-t--global--spacer--sm);
+}
+
+.security-vulnerabilities__source-legend {
+    row-gap: var(--pf-t--global--spacer--xs);
+}
+
+.security-vulnerabilities__source-legend-label {
+    margin: 0;
+    color: var(--pf-t--global--text--color--subtle);
 }
 
 .security-vulnerabilities__panel {
-    border: var(--pf-t--global--border--width--regular) solid var(--pf-t--global--border--color--default);
-    border-radius: var(--pf-t--global--border--radius--small);
+    padding: var(--pf-t--global--spacer--md);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
 }
 
 .security-vulnerabilities__empty-state {
@@ -215,7 +226,7 @@
     inline-size: 24rem;
 }
 
-@media (max-width: 992px) {
+@media (width <= 992px) {
     .security-vulnerabilities__finding-meta-cell {
         inline-size: auto;
     }
@@ -225,7 +236,7 @@
     }
 }
 
-@media (max-width: 640px) {
+@media (width <= 640px) {
     .security-vulnerabilities__filters {
         grid-template-columns: 1fr;
     }

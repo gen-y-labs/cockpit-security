@@ -28,8 +28,13 @@ function parseOsRelease(content: string | null): OsReleaseInfo {
         if (separator < 0)
             continue;
 
-        const key = line.slice(0, separator).trim().toUpperCase();
-        const value = line.slice(separator + 1).trim().replace(/^"|"$/g, "").toLowerCase();
+        const key = line.slice(0, separator)
+                .trim()
+                .toUpperCase();
+        const value = line.slice(separator + 1)
+                .trim()
+                .replace(/^"|"$/g, "")
+                .toLowerCase();
 
         if (key === "ID")
             id = value;
