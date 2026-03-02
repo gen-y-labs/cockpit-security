@@ -9,6 +9,16 @@ export TEST_OS
 TARFILE=$(RPM_NAME)-$(VERSION).tar.xz
 NODE_CACHE=$(RPM_NAME)-node-$(VERSION).tar.xz
 SPEC=$(RPM_NAME).spec
+DEBIAN_DIR=debian
+DEBIAN_TEMPLATE_DIR=packaging/debian
+DEBIAN_FILES = \
+	$(DEBIAN_DIR)/changelog \
+	$(DEBIAN_DIR)/control \
+	$(DEBIAN_DIR)/copyright \
+	$(DEBIAN_DIR)/rules \
+	$(DEBIAN_DIR)/source/format \
+	$(DEBIAN_DIR)/cockpit-security.install \
+	$(NULL)
 PREFIX ?= /usr/local
 APPSTREAMFILE=org.cockpit_project.$(subst -,_,$(PACKAGE_NAME)).metainfo.xml
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
@@ -85,6 +95,30 @@ $(SPEC): packaging/$(SPEC).in $(DIST_TEST)
 packaging/arch/PKGBUILD: packaging/arch/PKGBUILD.in
 	sed 's/VERSION/$(VERSION)/; s/SOURCE/$(TARFILE)/' $< > $@
 
+$(DEBIAN_DIR):
+	mkdir -p $(DEBIAN_DIR)/source
+
+$(DEBIAN_DIR)/control: $(DEBIAN_TEMPLATE_DIR)/control.in | $(DEBIAN_DIR)
+	cp $< $@
+
+$(DEBIAN_DIR)/copyright: $(DEBIAN_TEMPLATE_DIR)/copyright | $(DEBIAN_DIR)
+	cp $< $@
+
+$(DEBIAN_DIR)/rules: $(DEBIAN_TEMPLATE_DIR)/rules | $(DEBIAN_DIR)
+	cp $< $@
+	chmod 0755 $@
+
+$(DEBIAN_DIR)/source/format: $(DEBIAN_TEMPLATE_DIR)/source/format | $(DEBIAN_DIR)
+	cp $< $@
+
+$(DEBIAN_DIR)/cockpit-security.install: $(DEBIAN_TEMPLATE_DIR)/cockpit-security.install | $(DEBIAN_DIR)
+	cp $< $@
+
+$(DEBIAN_DIR)/changelog: $(DEBIAN_TEMPLATE_DIR)/changelog.in | $(DEBIAN_DIR)
+	sed -e 's/@VERSION@/$(VERSION)/g' \
+		-e "s/@DATE@/$$(date -Ru)/g" \
+		$< > $@
+
 $(DIST_TEST): $(NODE_MODULES_TEST) $(COCKPIT_REPO_STAMP) $(shell find src/ -type f) package.json build.js
 	NODE_ENV=$(NODE_ENV) ./build.js
 
@@ -93,6 +127,7 @@ watch: $(NODE_MODULES_TEST) $(COCKPIT_REPO_STAMP)
 
 clean:
 	rm -rf dist/
+	rm -rf $(DEBIAN_DIR)
 	rm -f $(SPEC) packaging/arch/PKGBUILD
 	rm -f po/LINGUAS
 	rm -f metafile.json runtime-npm-modules.txt
@@ -161,6 +196,23 @@ rpm: $(TARFILE) $(NODE_CACHE) $(SPEC)
 	rm -r "`pwd`/rpmbuild"
 	rm -r "`pwd`/output" "`pwd`/build"
 
+# convenience target for developers
+deb: $(DEBIAN_FILES) $(DIST_TEST)
+	dpkg-buildpackage -us -uc -b
+
+# convenience target for developers
+deb-src: $(DEBIAN_FILES) $(DIST_TEST)
+	dpkg-buildpackage -us -uc -S
+
+# generate package artifacts/metadata for supported distribution families
+packages: $(TARFILE) $(NODE_CACHE) $(SPEC) packaging/arch/PKGBUILD $(DEBIAN_FILES)
+	@echo "Generated source artifacts:"
+	@echo " - $(TARFILE)"
+	@echo " - $(NODE_CACHE)"
+	@echo " - $(SPEC)"
+	@echo " - packaging/arch/PKGBUILD"
+	@echo " - debian/ metadata (for dpkg-buildpackage)"
+
 # build a VM with locally built distro pkgs installed
 # disable networking, VM images have mock/pbuilder with the common build dependencies pre-installed
 $(VM_IMAGE): export XZ_OPT=-0
@@ -200,4 +252,4 @@ $(NODE_MODULES_TEST): package.json
 	for _ in `seq 3`; do timeout 10m env -u NODE_ENV npm install --ignore-scripts && exit 0; done; exit 1
 	env -u NODE_ENV npm prune
 
-.PHONY: all clean install devel-install devel-uninstall print-version dist node-cache rpm prepare-check check vm print-vm
+.PHONY: all clean install devel-install devel-uninstall print-version dist node-cache rpm deb deb-src packages prepare-check check vm print-vm

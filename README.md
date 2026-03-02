@@ -35,6 +35,61 @@ to generate the distribution tarball. In `production` mode, source files are
 automatically minified and compressed. Set `NODE_ENV=production` if you want to
 duplicate this behavior.
 
+## Distribution packaging
+
+The project ships distro packaging metadata and standard Cockpit install paths:
+
+* RPM spec template: `packaging/cockpit-security.spec.in`
+* Arch template: `packaging/arch/PKGBUILD.in`
+* Debian templates: `packaging/debian/*`
+
+Generate all packaging artifacts/metadata in one step:
+
+```
+make packages
+```
+
+Build distribution-specific packages:
+
+* Fedora/RHEL/openSUSE RPM packages:
+
+  ```
+  make rpm
+  ```
+
+* Fedora/RHEL/openSUSE source RPM:
+
+  ```
+  make srpm
+  ```
+
+* Debian/Ubuntu binary package:
+
+  ```
+  make deb
+  ```
+
+* Debian/Ubuntu source package:
+
+  ```
+  make deb-src
+  ```
+
+For Arch Linux, `make packages` generates `packaging/arch/PKGBUILD`; build and
+publish it via AUR tooling (`makepkg`/`aurpublish`) in your packaging repo.
+
+## Distribution publishing overview
+
+* Fedora/CentOS Stream: use `packit.yaml` with Packit/COPR jobs.
+* openSUSE: use the generated RPM tarball/spec in an OBS project.
+* Debian/Ubuntu: use `make deb-src` output with `dput` to your repository/PPA.
+* Arch Linux: publish `PKGBUILD` updates through AUR.
+
+All packages install into Cockpit-standard locations:
+
+* `/usr/share/cockpit/security`
+* `/usr/share/metainfo/org.cockpit_project.security.metainfo.xml`
+
 For development, you usually want to run your module straight out of the git
 tree. To do that, run `make devel-install`, which links your checkout to the
 location were cockpit-bridge looks for packages. If you prefer to do

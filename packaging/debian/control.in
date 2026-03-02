@@ -1,0 +1,20 @@
+Source: cockpit-security
+Section: admin
+Priority: optional
+Maintainer: Cockpit Security Maintainers <cockpit-devel@lists.fedorahosted.org>
+Build-Depends:
+ debhelper-compat (= 13),
+ gettext,
+ make
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+Homepage: https://github.com/cockpit-project/security
+
+Package: cockpit-security
+Architecture: all
+Depends:
+ cockpit-bridge,
+ ${misc:Depends}
+Description: Cockpit module for host vulnerability visibility
+ Cockpit Security provides a web console module for viewing and tracking host
+ vulnerabilities.
