@@ -39,7 +39,7 @@ function getSeverityText(severity: SecuritySeverity) {
     return _("Unknown");
 }
 
-interface NativeTabProps {
+interface UpdatesTabProps {
     loading: boolean;
     error: string | null;
     report: SecurityReport | null;
@@ -49,7 +49,7 @@ interface NativeTabProps {
     canDownload: boolean;
 }
 
-export function NativeTabContent({ loading, error, report, lastUpdated, onRefresh, onDownloadJson, canDownload }: NativeTabProps) {
+export function UpdatesTabContent({ loading, error, report, lastUpdated, onRefresh, onDownloadJson, canDownload }: UpdatesTabProps) {
     const [searchFilter, setSearchFilter] = useState("");
     const [severityFilter, setSeverityFilter] = useState<SeverityFilter>("all");
     const [statusFilter, setStatusFilter] = useState("all");
@@ -112,23 +112,23 @@ export function NativeTabContent({ loading, error, report, lastUpdated, onRefres
 
     if (loading) {
         return (
-            <EmptyState className="security-vulnerabilities__empty-state" headingLevel="h2" titleText={_("Loading native security updates")} icon={Spinner}>
-                <EmptyStateBody>{_("Running native security update query...")}</EmptyStateBody>
+            <EmptyState className="security-vulnerabilities__empty-state" headingLevel="h2" titleText={_("Loading security updates")} icon={Spinner}>
+                <EmptyStateBody>{_("Running security update query...")}</EmptyStateBody>
             </EmptyState>
         );
     }
 
     if (error) {
         return (
-            <ErrorBanner title={_("Loading native security updates failed")} error={error} />
+            <ErrorBanner title={_("Loading security updates failed")} error={error} />
         );
     }
 
     if (!report || report.findings.length === 0) {
         return (
             <EmptyTabState
-                title={_("No native security patches found")}
-                body={_("The native provider did not report any pending security patches.")}
+                title={_("No security updates found")}
+                body={_("The updates provider did not report any pending security patches.")}
             />
         );
     }
@@ -269,7 +269,7 @@ export function NativeTabContent({ loading, error, report, lastUpdated, onRefres
                     <div className="security-vulnerabilities__totals">
                         {cockpit.format(_("C:$0 H:$1 M:$2 L:$3 Unknown:$4"), filteredSummary.critical, filteredSummary.high, filteredSummary.medium, filteredSummary.low, filteredSummary.unknown)}
                     </div>
-                    <table className="pf-v6-c-table services-list security-vulnerabilities__list" aria-label={_("Native vulnerability findings")}>
+                    <table className="pf-v6-c-table services-list security-vulnerabilities__list" aria-label={_("Security update findings")}>
                         <tbody>
                             {filteredFindings.map(finding => (
                                 <tr key={`${finding.id}-${finding.source}-${finding.status}`}>

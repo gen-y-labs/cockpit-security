@@ -40,7 +40,7 @@ function getSeverityText(severity: SecuritySeverity) {
     return _("Unknown");
 }
 
-interface TrivyTabProps {
+interface VulnerabilitiesTabProps {
     loading: boolean;
     error: string | null;
     report: SecurityReport | null;
@@ -50,7 +50,7 @@ interface TrivyTabProps {
     canDownload: boolean;
 }
 
-export function TrivyTabContent({
+export function VulnerabilitiesTabContent({
     loading,
     error,
     report,
@@ -58,7 +58,7 @@ export function TrivyTabContent({
     onRunScan,
     onDownloadJson,
     canDownload
-}: TrivyTabProps) {
+}: VulnerabilitiesTabProps) {
     const [searchFilter, setSearchFilter] = useState("");
     const [severityFilter, setSeverityFilter] = useState<SeverityFilter>("all");
 
@@ -94,12 +94,12 @@ export function TrivyTabContent({
                     <Flex className="security-vulnerabilities__tab-actions" spaceItems={{ default: "spaceItemsSm" }} alignItems={{ default: "alignItemsCenter" }}>
                         <FlexItem>
                             <Content component={ContentVariants.small}>
-                                {cockpit.format(_("Last deep scan: $0"), lastUpdated)}
+                                {cockpit.format(_("Last vulnerability scan: $0"), lastUpdated)}
                             </Content>
                         </FlexItem>
                         <FlexItem>
                             <Button variant="primary" onClick={onRunScan} isLoading={loading}>
-                                {_("Run Deep Scan")}
+                                {_("Run Vulnerability Scan")}
                             </Button>
                         </FlexItem>
                         <FlexItem>
@@ -111,12 +111,12 @@ export function TrivyTabContent({
                 </FlexItem>
             </Flex>
             {loading && !report && (
-                <EmptyState className="security-vulnerabilities__empty-state" headingLevel="h2" titleText={_("Running Trivy deep scan")} icon={Spinner}>
+                <EmptyState className="security-vulnerabilities__empty-state" headingLevel="h2" titleText={_("Running vulnerability scan")} icon={Spinner}>
                     <EmptyStateBody>{_("Scanning the host filesystem with Trivy. This may take several minutes.")}</EmptyStateBody>
                 </EmptyState>
             )}
             {error && (
-                <ErrorBanner title={_("Deep scan failed")} error={error}>
+                <ErrorBanner title={_("Vulnerability scan failed")} error={error}>
                     {isMissingTrivyError
                         ? (
                             <Content component={ContentVariants.p}>
@@ -129,13 +129,13 @@ export function TrivyTabContent({
             )}
             {!loading && !error && !report && (
                 <EmptyTabState
-                    title={_("No deep scan results yet")}
-                    body={_("Run a Trivy deep scan to collect vulnerability findings for this host.")}
+                    title={_("No vulnerability scan results yet")}
+                    body={_("Run a vulnerability scan to collect vulnerability findings for this host.")}
                 />
             )}
             {!loading && !error && report && report.findings.length === 0 && (
                 <EmptyTabState
-                    title={_("No deep scan vulnerabilities found")}
+                    title={_("No vulnerabilities found")}
                     body={_("Trivy did not report any vulnerabilities for this scan.")}
                 />
             )}
@@ -227,7 +227,7 @@ export function TrivyTabContent({
                             <div className="security-vulnerabilities__totals">
                                 {cockpit.format(_("C:$0 H:$1 M:$2 L:$3 Unknown:$4"), filteredSummary.critical, filteredSummary.high, filteredSummary.medium, filteredSummary.low, filteredSummary.unknown)}
                             </div>
-                            <table className="pf-v6-c-table services-list security-vulnerabilities__list" aria-label={_("Trivy vulnerability findings")}>
+                            <table className="pf-v6-c-table services-list security-vulnerabilities__list" aria-label={_("Vulnerability findings")}>
                                 <tbody>
                                     {filteredFindings.map(finding => (
                                         <tr key={`${finding.id}-${finding.source}-${finding.status}`}>

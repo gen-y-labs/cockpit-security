@@ -9,16 +9,16 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Page, PageSection } from "@patternfly/react-core/dist/esm/components/Page/index.js";
 
 import cockpit from 'cockpit';
-import { VulnerabilityTabs } from './components/vulnerability-tabs';
-import type { VulnerabilityTab } from './components/vulnerability-tabs';
+import { SecurityTabs } from './components/security-tabs';
+import type { SecurityTab } from './components/security-tabs';
 import { getNativeProvider } from './providers/native-provider';
 import { getCachedOpenScapReport, listOpenScapSources, OpenScapProvider } from './providers/openscap-provider';
 import { getCachedTrivyReport, TrivyProvider } from './providers/trivy-provider';
 import type { SecurityReport } from './security-report';
 import { loadSystemInfo } from './system-info';
 import { ComplianceTabContent } from './tabs/compliance-tab-content';
-import { NativeTabContent } from './tabs/native-tab-content';
-import { TrivyTabContent } from './tabs/trivy-tab-content';
+import { UpdatesTabContent } from './tabs/updates-tab-content';
+import { VulnerabilitiesTabContent } from './tabs/vulnerabilities-tab-content';
 
 const _ = cockpit.gettext;
 
@@ -53,17 +53,17 @@ function downloadReportJson(report: SecurityReport | null) {
 
 export const Application = () => {
     const mountedRef = useRef(true);
-    const [activeTab, setActiveTab] = useState<VulnerabilityTab>('native');
+    const [activeTab, setActiveTab] = useState<SecurityTab>('updates');
     const [osName, setOsName] = useState(_("Unknown"));
     const [osId, setOsId] = useState("");
-    const [nativeLoading, setNativeLoading] = useState(true);
-    const [nativeError, setNativeError] = useState<string | null>(null);
-    const [nativeReport, setNativeReport] = useState<SecurityReport | null>(null);
+    const [updatesLoading, setUpdatesLoading] = useState(true);
+    const [updatesError, setUpdatesError] = useState<string | null>(null);
+    const [updatesReport, setUpdatesReport] = useState<SecurityReport | null>(null);
     const [lastUpdated, setLastUpdated] = useState("--");
-    const [trivyLoading, setTrivyLoading] = useState(false);
-    const [trivyError, setTrivyError] = useState<string | null>(null);
-    const [trivyReport, setTrivyReport] = useState<SecurityReport | null>(null);
-    const [trivyLastUpdated, setTrivyLastUpdated] = useState("--");
+    const [vulnerabilitiesLoading, setVulnerabilitiesLoading] = useState(false);
+    const [vulnerabilitiesError, setVulnerabilitiesError] = useState<string | null>(null);
+    const [vulnerabilitiesReport, setVulnerabilitiesReport] = useState<SecurityReport | null>(null);
+    const [vulnerabilitiesLastUpdated, setVulnerabilitiesLastUpdated] = useState("--");
     const [complianceLoading, setComplianceLoading] = useState(false);
     const [complianceLoadingSources, setComplianceLoadingSources] = useState(true);
     const [complianceError, setComplianceError] = useState<string | null>(null);
@@ -96,12 +96,12 @@ export const Application = () => {
         };
     }, []);
 
-    const loadNativeReport = useCallback(() => {
+    const loadUpdatesReport = useCallback(() => {
         if (!mountedRef.current)
             return Promise.resolve();
 
-        setNativeLoading(true);
-        setNativeError(null);
+        setUpdatesLoading(true);
+        setUpdatesError(null);
 
         return getNativeProvider()
                 .then(provider => provider.getReport())
@@ -109,25 +109,25 @@ export const Application = () => {
                     if (!mountedRef.current)
                         return;
 
-                    setNativeReport(report);
-                    setNativeError(null);
+                    setUpdatesReport(report);
+                    setUpdatesError(null);
                     setLastUpdated(new Date(report.generatedAt).toLocaleString());
                 })
                 .catch(error => {
                     if (!mountedRef.current)
                         return;
 
-                    setNativeError(error instanceof Error ? error.message : String(error));
+                    setUpdatesError(error instanceof Error ? error.message : String(error));
                 })
                 .finally(() => {
                     if (mountedRef.current)
-                        setNativeLoading(false);
+                        setUpdatesLoading(false);
                 });
     }, []);
 
     useEffect(() => {
-        loadNativeReport();
-    }, [loadNativeReport]);
+        loadUpdatesReport();
+    }, [loadUpdatesReport]);
 
     useEffect(() => {
         return () => {
@@ -140,8 +140,8 @@ export const Application = () => {
         if (!cachedReport)
             return;
 
-        setTrivyReport(cachedReport);
-        setTrivyLastUpdated(new Date(cachedReport.generatedAt).toLocaleString());
+        setVulnerabilitiesReport(cachedReport);
+        setVulnerabilitiesLastUpdated(new Date(cachedReport.generatedAt).toLocaleString());
     }, []);
 
     useEffect(() => {
@@ -175,31 +175,31 @@ export const Application = () => {
                 });
     }, []);
 
-    const runDeepScan = useCallback(() => {
+    const runVulnerabilityScan = useCallback(() => {
         if (!mountedRef.current)
             return;
 
-        setTrivyLoading(true);
-        setTrivyError(null);
+        setVulnerabilitiesLoading(true);
+        setVulnerabilitiesError(null);
 
         new TrivyProvider().getReport()
                 .then(report => {
                     if (!mountedRef.current)
                         return;
 
-                    setTrivyReport(report);
-                    setTrivyError(null);
-                    setTrivyLastUpdated(new Date(report.generatedAt).toLocaleString());
+                    setVulnerabilitiesReport(report);
+                    setVulnerabilitiesError(null);
+                    setVulnerabilitiesLastUpdated(new Date(report.generatedAt).toLocaleString());
                 })
                 .catch(error => {
                     if (!mountedRef.current)
                         return;
 
-                    setTrivyError(error instanceof Error ? error.message : String(error));
+                    setVulnerabilitiesError(error instanceof Error ? error.message : String(error));
                 })
                 .finally(() => {
                     if (mountedRef.current)
-                        setTrivyLoading(false);
+                        setVulnerabilitiesLoading(false);
                 });
     }, []);
 
@@ -234,31 +234,31 @@ export const Application = () => {
     const osAccentClass = getOsAccentClass(osId, osName);
 
     let activeTabContent;
-    if (activeTab === "native") {
+    if (activeTab === "updates") {
         activeTabContent = (
             <section className="security-vulnerabilities__panel">
-                <NativeTabContent
-                    loading={nativeLoading}
-                    error={nativeError}
-                    report={nativeReport}
+                <UpdatesTabContent
+                    loading={updatesLoading}
+                    error={updatesError}
+                    report={updatesReport}
                     lastUpdated={lastUpdated}
-                    onRefresh={loadNativeReport}
-                    onDownloadJson={() => downloadReportJson(nativeReport)}
-                    canDownload={nativeReport !== null}
+                    onRefresh={loadUpdatesReport}
+                    onDownloadJson={() => downloadReportJson(updatesReport)}
+                    canDownload={updatesReport !== null}
                 />
             </section>
         );
-    } else if (activeTab === "trivy") {
+    } else if (activeTab === "vulnerabilities") {
         activeTabContent = (
             <section className="security-vulnerabilities__panel">
-                <TrivyTabContent
-                    loading={trivyLoading}
-                    error={trivyError}
-                    report={trivyReport}
-                    lastUpdated={trivyLastUpdated}
-                    onRunScan={runDeepScan}
-                    onDownloadJson={() => downloadReportJson(trivyReport)}
-                    canDownload={trivyReport !== null}
+                <VulnerabilitiesTabContent
+                    loading={vulnerabilitiesLoading}
+                    error={vulnerabilitiesError}
+                    report={vulnerabilitiesReport}
+                    lastUpdated={vulnerabilitiesLastUpdated}
+                    onRunScan={runVulnerabilityScan}
+                    onDownloadJson={() => downloadReportJson(vulnerabilitiesReport)}
+                    canDownload={vulnerabilitiesReport !== null}
                 />
             </section>
         );
@@ -285,7 +285,7 @@ export const Application = () => {
     return (
         <Page className={`pf-m-no-sidebar security-vulnerabilities ${osAccentClass}`.trim()}>
             <PageSection hasBodyWrapper={false}>
-                <VulnerabilityTabs activeTab={activeTab} onChange={setActiveTab} />
+                <SecurityTabs activeTab={activeTab} onChange={setActiveTab} />
                 {activeTabContent}
             </PageSection>
         </Page>

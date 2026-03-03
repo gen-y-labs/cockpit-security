@@ -9,23 +9,23 @@ import cockpit from 'cockpit';
 
 const _ = cockpit.gettext;
 
-export type VulnerabilityTab = 'native' | 'trivy' | 'compliance';
-const TABS: VulnerabilityTab[] = ["native", "trivy", "compliance"];
+export type SecurityTab = 'updates' | 'vulnerabilities' | 'compliance';
+const TABS: SecurityTab[] = ["updates", "vulnerabilities", "compliance"];
 
-function isVulnerabilityTab(value: unknown): value is VulnerabilityTab {
-    return value === "native" || value === "trivy" || value === "compliance";
+function isSecurityTab(value: unknown): value is SecurityTab {
+    return value === "updates" || value === "vulnerabilities" || value === "compliance";
 }
 
-export function VulnerabilityTabs({
+export function SecurityTabs({
     activeTab,
     onChange,
 }: {
-    activeTab: VulnerabilityTab;
-    onChange: (tab: VulnerabilityTab) => void;
+    activeTab: SecurityTab;
+    onChange: (tab: SecurityTab) => void;
 }) {
-    const tabLabels: Record<VulnerabilityTab, string> = {
-        native: _("Native"),
-        trivy: _("Trivy"),
+    const tabLabels: Record<SecurityTab, string> = {
+        updates: _("Updates"),
+        vulnerabilities: _("Vulnerabilities"),
         compliance: _("Compliance"),
     };
 
@@ -33,9 +33,9 @@ export function VulnerabilityTabs({
         <Nav
             variant="horizontal-subnav"
             id="services-filter"
-            aria-label={_("Vulnerability providers navigation")}
+            aria-label={_("Security providers navigation")}
             onSelect={(_event, result) => {
-                if (!isVulnerabilityTab(result.itemId))
+                if (!isSecurityTab(result.itemId))
                     return;
 
                 const selectedTab = result.itemId;
