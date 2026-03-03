@@ -14,7 +14,7 @@ export function SeverityCard({
 }: {
     label: string;
     count: number;
-    color: "red" | "orange" | "gold" | "blue" | "grey";
+    color: "red" | "orange" | "yellow" | "blue" | "grey";
     active: boolean;
     onClick: () => void;
 }) {

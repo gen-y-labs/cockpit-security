@@ -12,9 +12,11 @@ import cockpit from 'cockpit';
 import { VulnerabilityTabs } from './components/vulnerability-tabs';
 import type { VulnerabilityTab } from './components/vulnerability-tabs';
 import { getNativeProvider } from './providers/native-provider';
+import { getCachedOpenScapReport, listOpenScapSources, OpenScapProvider } from './providers/openscap-provider';
 import { getCachedTrivyReport, TrivyProvider } from './providers/trivy-provider';
 import type { SecurityReport } from './security-report';
 import { loadSystemInfo } from './system-info';
+import { ComplianceTabContent } from './tabs/compliance-tab-content';
 import { NativeTabContent } from './tabs/native-tab-content';
 import { TrivyTabContent } from './tabs/trivy-tab-content';
 
@@ -62,6 +64,13 @@ export const Application = () => {
     const [trivyError, setTrivyError] = useState<string | null>(null);
     const [trivyReport, setTrivyReport] = useState<SecurityReport | null>(null);
     const [trivyLastUpdated, setTrivyLastUpdated] = useState("--");
+    const [complianceLoading, setComplianceLoading] = useState(false);
+    const [complianceLoadingSources, setComplianceLoadingSources] = useState(true);
+    const [complianceError, setComplianceError] = useState<string | null>(null);
+    const [complianceReport, setComplianceReport] = useState<SecurityReport | null>(null);
+    const [complianceLastUpdated, setComplianceLastUpdated] = useState("--");
+    const [complianceSources, setComplianceSources] = useState<string[]>([]);
+    const [selectedComplianceSource, setSelectedComplianceSource] = useState("");
 
     useEffect(() => {
         let mounted = true;
@@ -135,6 +144,37 @@ export const Application = () => {
         setTrivyLastUpdated(new Date(cachedReport.generatedAt).toLocaleString());
     }, []);
 
+    useEffect(() => {
+        const cachedReport = getCachedOpenScapReport();
+        if (!cachedReport)
+            return;
+
+        setComplianceReport(cachedReport);
+        setComplianceLastUpdated(new Date(cachedReport.generatedAt).toLocaleString());
+    }, []);
+
+    useEffect(() => {
+        setComplianceLoadingSources(true);
+        listOpenScapSources()
+                .then(sources => {
+                    if (!mountedRef.current)
+                        return;
+
+                    setComplianceSources(sources);
+                    setSelectedComplianceSource(previous => previous || sources[0] || "");
+                })
+                .catch(error => {
+                    if (!mountedRef.current)
+                        return;
+
+                    setComplianceError(error instanceof Error ? error.message : String(error));
+                })
+                .finally(() => {
+                    if (mountedRef.current)
+                        setComplianceLoadingSources(false);
+                });
+    }, []);
+
     const runDeepScan = useCallback(() => {
         if (!mountedRef.current)
             return;
@@ -163,10 +203,39 @@ export const Application = () => {
                 });
     }, []);
 
+    const runComplianceScan = useCallback(() => {
+        if (!mountedRef.current || !selectedComplianceSource)
+            return;
+
+        setComplianceLoading(true);
+        setComplianceError(null);
+
+        new OpenScapProvider({ source: selectedComplianceSource }).getReport()
+                .then(report => {
+                    if (!mountedRef.current)
+                        return;
+
+                    setComplianceReport(report);
+                    setComplianceError(null);
+                    setComplianceLastUpdated(new Date(report.generatedAt).toLocaleString());
+                })
+                .catch(error => {
+                    if (!mountedRef.current)
+                        return;
+
+                    setComplianceError(error instanceof Error ? error.message : String(error));
+                })
+                .finally(() => {
+                    if (mountedRef.current)
+                        setComplianceLoading(false);
+                });
+    }, [selectedComplianceSource]);
+
     const osAccentClass = getOsAccentClass(osId, osName);
 
-    const activeTabContent = activeTab === "native"
-        ? (
+    let activeTabContent;
+    if (activeTab === "native") {
+        activeTabContent = (
             <section className="security-vulnerabilities__panel">
                 <NativeTabContent
                     loading={nativeLoading}
@@ -178,8 +247,9 @@ export const Application = () => {
                     canDownload={nativeReport !== null}
                 />
             </section>
-        )
-        : (
+        );
+    } else if (activeTab === "trivy") {
+        activeTabContent = (
             <section className="security-vulnerabilities__panel">
                 <TrivyTabContent
                     loading={trivyLoading}
@@ -192,6 +262,25 @@ export const Application = () => {
                 />
             </section>
         );
+    } else {
+        activeTabContent = (
+            <section className="security-vulnerabilities__panel">
+                <ComplianceTabContent
+                    loading={complianceLoading}
+                    loadingSources={complianceLoadingSources}
+                    error={complianceError}
+                    report={complianceReport}
+                    lastUpdated={complianceLastUpdated}
+                    selectedSource={selectedComplianceSource}
+                    sources={complianceSources}
+                    onSourceChange={setSelectedComplianceSource}
+                    onRunScan={runComplianceScan}
+                    onDownloadJson={() => downloadReportJson(complianceReport)}
+                    canDownload={complianceReport !== null}
+                />
+            </section>
+        );
+    }
 
     return (
         <Page className={`pf-m-no-sidebar security-vulnerabilities ${osAccentClass}`.trim()}>

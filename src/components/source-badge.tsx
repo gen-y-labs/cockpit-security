@@ -16,12 +16,14 @@ const SOURCE_LABELS: Record<string, string> = {
     "native-zypper": "native-zypper",
     "native-apt": "native-apt",
     trivy: "trivy",
+    openscap: "openscap",
 };
 
 const SOURCE_BADGE_COLORS: Record<string, SourceBadgeTone> = {
     "native-zypper": "green",
     "native-apt": "blue",
     trivy: "purple",
+    openscap: "blue",
 };
 
 export function getSourceLabel(source: string) {

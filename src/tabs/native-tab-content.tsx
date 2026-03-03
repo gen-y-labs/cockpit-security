@@ -192,7 +192,7 @@ export function NativeTabContent({ loading, error, report, lastUpdated, onRefres
                     <SeverityCard
                         label={_("Medium")}
                         count={report.summary.medium}
-                        color="gold"
+                        color="yellow"
                         active={severityFilter === "medium"}
                         onClick={() => setSeverityFilter(prev => prev === "medium" ? "all" : "medium")}
                     />

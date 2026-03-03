@@ -10,7 +10,7 @@ export function getSeverityLabelColor(severity: SecuritySeverity) {
     if (severity === "high")
         return "orange" as const;
     if (severity === "medium")
-        return "gold" as const;
+        return "yellow" as const;
     if (severity === "low")
         return "blue" as const;
     return "grey" as const;

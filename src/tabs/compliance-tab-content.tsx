@@ -19,7 +19,7 @@ import { EmptyTabState } from '../components/empty-tab-state';
 import { ErrorBanner } from '../components/error-banner';
 import { SeverityCard } from '../components/severity-card';
 import { SourceBadge, SourceBadgeLegend } from '../components/source-badge';
-import { TRIVY_INSTALL_URL } from '../providers/trivy-provider';
+import { OPENSCAP_INSTALL_URL, SCAP_SECURITY_GUIDE_URL } from '../providers/openscap-provider';
 import type { SecurityReport, SecuritySeverity } from '../security-report';
 import { createSummaryFromFindings } from '../utils/findings';
 import { getSeverityLabelColor } from '../utils/severity';
@@ -40,27 +40,43 @@ function getSeverityText(severity: SecuritySeverity) {
     return _("Unknown");
 }
 
-interface TrivyTabProps {
+interface ComplianceTabProps {
     loading: boolean;
+    loadingSources: boolean;
     error: string | null;
     report: SecurityReport | null;
     lastUpdated: string;
+    selectedSource: string;
+    sources: string[];
+    onSourceChange: (value: string) => void;
     onRunScan: () => void;
     onDownloadJson: () => void;
     canDownload: boolean;
 }
 
-export function TrivyTabContent({
+export function ComplianceTabContent({
     loading,
+    loadingSources,
     error,
     report,
     lastUpdated,
+    selectedSource,
+    sources,
+    onSourceChange,
     onRunScan,
     onDownloadJson,
-    canDownload
-}: TrivyTabProps) {
+    canDownload,
+}: ComplianceTabProps) {
     const [searchFilter, setSearchFilter] = useState("");
     const [severityFilter, setSeverityFilter] = useState<SeverityFilter>("all");
+    const [statusFilter, setStatusFilter] = useState("all");
+
+    const statusOptions = useMemo(() => {
+        if (!report)
+            return [];
+
+        return [...new Set(report.findings.map(finding => finding.status))].sort();
+    }, [report]);
 
     const filteredFindings = useMemo(() => {
         if (!report)
@@ -71,35 +87,52 @@ export function TrivyTabContent({
         return report.findings.filter(finding => {
             if (severityFilter !== "all" && finding.severity !== severityFilter)
                 return false;
+            if (statusFilter !== "all" && finding.status !== statusFilter)
+                return false;
             if (!search)
                 return true;
 
             return finding.id.toLowerCase().includes(search) ||
                 finding.summary.toLowerCase().includes(search) ||
-                finding.status.toLowerCase().includes(search) ||
-                finding.source.toLowerCase().includes(search);
+                finding.status.toLowerCase().includes(search);
         });
-    }, [report, searchFilter, severityFilter]);
+    }, [report, searchFilter, severityFilter, statusFilter]);
 
     const filteredSummary = useMemo(() => createSummaryFromFindings(filteredFindings), [filteredFindings]);
-    const isMissingTrivyError = error?.includes(TRIVY_INSTALL_URL) || false;
+    const isMissingOpenScapError = Boolean(
+        error?.includes(OPENSCAP_INSTALL_URL) || error?.includes(SCAP_SECURITY_GUIDE_URL)
+    );
 
     return (
         <>
             <Flex className="security-vulnerabilities__header-controls" justifyContent={{ default: "justifyContentSpaceBetween" }} alignItems={{ default: "alignItemsCenter" }}>
                 <FlexItem>
-                    <SourceBadgeLegend sources={["trivy"]} />
+                    <SourceBadgeLegend sources={["openscap"]} />
                 </FlexItem>
                 <FlexItem>
                     <Flex className="security-vulnerabilities__tab-actions" spaceItems={{ default: "spaceItemsSm" }} alignItems={{ default: "alignItemsCenter" }}>
                         <FlexItem>
                             <Content component={ContentVariants.small}>
-                                {cockpit.format(_("Last deep scan: $0"), lastUpdated)}
+                                {cockpit.format(_("Last compliance scan: $0"), lastUpdated)}
                             </Content>
                         </FlexItem>
                         <FlexItem>
-                            <Button variant="primary" onClick={onRunScan} isLoading={loading}>
-                                {_("Run Deep Scan")}
+                            <select
+                                className="pf-v6-c-form-control"
+                                aria-label={_("Select OpenSCAP source")}
+                                value={selectedSource}
+                                onChange={event => onSourceChange(event.currentTarget.value)}
+                                disabled={loading || loadingSources || sources.length === 0}
+                            >
+                                {sources.length === 0 && <option value="">{_("No OpenSCAP data streams found")}</option>}
+                                {sources.map(source => (
+                                    <option key={source} value={source}>{source}</option>
+                                ))}
+                            </select>
+                        </FlexItem>
+                        <FlexItem>
+                            <Button variant="primary" onClick={onRunScan} isLoading={loading} isDisabled={!selectedSource || loadingSources}>
+                                {_("Run Compliance Scan")}
                             </Button>
                         </FlexItem>
                         <FlexItem>
@@ -110,33 +143,61 @@ export function TrivyTabContent({
                     </Flex>
                 </FlexItem>
             </Flex>
-            {loading && !report && (
-                <EmptyState className="security-vulnerabilities__empty-state" headingLevel="h2" titleText={_("Running Trivy deep scan")} icon={Spinner}>
-                    <EmptyStateBody>{_("Scanning the host filesystem with Trivy. This may take several minutes.")}</EmptyStateBody>
+            {loadingSources && (
+                <EmptyState className="security-vulnerabilities__empty-state" headingLevel="h2" titleText={_("Loading OpenSCAP sources")} icon={Spinner}>
+                    <EmptyStateBody>{_("Detecting available OpenSCAP data stream files on this host.")}</EmptyStateBody>
+                </EmptyState>
+            )}
+            {!loadingSources && loading && !report && (
+                <EmptyState className="security-vulnerabilities__empty-state" headingLevel="h2" titleText={_("Running OpenSCAP compliance scan")} icon={Spinner}>
+                    <EmptyStateBody>{_("Running OpenSCAP evaluation against the selected source. This may take several minutes.")}</EmptyStateBody>
                 </EmptyState>
             )}
             {error && (
-                <ErrorBanner title={_("Deep scan failed")} error={error}>
-                    {isMissingTrivyError
+                <ErrorBanner title={_("Compliance scan failed")} error={error}>
+                    {isMissingOpenScapError
                         ? (
-                            <Content component={ContentVariants.p}>
-                                {_("Trivy is not installed on this system. Install Trivy with your package manager. Installation guide: ")}
-                                <a href={TRIVY_INSTALL_URL} target="_blank" rel="noreferrer">{TRIVY_INSTALL_URL}</a>
-                            </Content>
+                            <>
+                                <Content component={ContentVariants.p}>
+                                    {_("OpenSCAP compliance prerequisites are missing. Install openscap-utils and scap-security-guide.")}
+                                </Content>
+                                <Content component={ContentVariants.small}>
+                                    <code>dnf install openscap-utils scap-security-guide</code>
+                                </Content>
+                                <Content component={ContentVariants.small}>
+                                    <code>apt install openscap-scanner ssg-base</code>
+                                </Content>
+                                <Content component={ContentVariants.small}>
+                                    <code>zypper install openscap-utils scap-security-guide</code>
+                                </Content>
+                                <Content component={ContentVariants.p}>
+                                    {_("OpenSCAP: ")}
+                                    <a href={OPENSCAP_INSTALL_URL} target="_blank" rel="noreferrer">{OPENSCAP_INSTALL_URL}</a>
+                                    {" "}
+                                    {_("SCAP Security Guide: ")}
+                                    <a href={SCAP_SECURITY_GUIDE_URL} target="_blank" rel="noreferrer">{SCAP_SECURITY_GUIDE_URL}</a>
+                                </Content>
+                            </>
                         )
                         : undefined}
                 </ErrorBanner>
             )}
-            {!loading && !error && !report && (
+            {!loadingSources && !loading && !error && !selectedSource && (
                 <EmptyTabState
-                    title={_("No deep scan results yet")}
-                    body={_("Run a Trivy deep scan to collect vulnerability findings for this host.")}
+                    title={_("No OpenSCAP source selected")}
+                    body={_("Choose an OpenSCAP data stream source to run a compliance scan.")}
                 />
             )}
-            {!loading && !error && report && report.findings.length === 0 && (
+            {!loadingSources && !loading && !error && selectedSource && !report && (
                 <EmptyTabState
-                    title={_("No deep scan vulnerabilities found")}
-                    body={_("Trivy did not report any vulnerabilities for this scan.")}
+                    title={_("No compliance results yet")}
+                    body={_("Run an OpenSCAP compliance scan to collect rule results for this host.")}
+                />
+            )}
+            {!loadingSources && !loading && !error && report && report.findings.length === 0 && (
+                <EmptyTabState
+                    title={_("No compliance findings")}
+                    body={_("OpenSCAP did not report rule results for this scan.")}
                 />
             )}
             {report && report.findings.length > 0 && (
@@ -192,10 +253,10 @@ export function TrivyTabContent({
                         <ToolbarContent>
                             <ToolbarItem>
                                 <SearchInput
-                                    id="trivy-text-filter"
+                                    id="openscap-text-filter"
                                     className="services-text-filter"
-                                    aria-label={_("Filter findings by vulnerability ID or summary")}
-                                    placeholder={_("Filter by vulnerability ID or summary")}
+                                    aria-label={_("Filter findings by rule ID or summary")}
+                                    placeholder={_("Filter by rule ID or summary")}
                                     value={searchFilter}
                                     onChange={(_event, value) => setSearchFilter(value)}
                                     onClear={() => setSearchFilter("")}
@@ -211,6 +272,14 @@ export function TrivyTabContent({
                                     <option value="unknown">{_("Unknown")}</option>
                                 </select>
                             </ToolbarItem>
+                            <ToolbarItem>
+                                <select className="pf-v6-c-form-control" aria-label={_("Filter by status")} value={statusFilter} onChange={event => setStatusFilter(event.currentTarget.value)}>
+                                    <option value="all">{_("All statuses")}</option>
+                                    {statusOptions.map(status => (
+                                        <option key={status} value={status}>{status}</option>
+                                    ))}
+                                </select>
+                            </ToolbarItem>
                         </ToolbarContent>
                     </Toolbar>
                     <Content className="security-vulnerabilities__filtered-summary" component={ContentVariants.small}>
@@ -219,7 +288,7 @@ export function TrivyTabContent({
                     {filteredFindings.length === 0 && (
                         <EmptyTabState
                             title={_("No matching findings")}
-                            body={_("Try adjusting search text or severity filter.")}
+                            body={_("Try adjusting search text, severity, or status filter.")}
                         />
                     )}
                     {filteredFindings.length > 0 && (
@@ -227,7 +296,7 @@ export function TrivyTabContent({
                             <div className="security-vulnerabilities__totals">
                                 {cockpit.format(_("C:$0 H:$1 M:$2 L:$3 Unknown:$4"), filteredSummary.critical, filteredSummary.high, filteredSummary.medium, filteredSummary.low, filteredSummary.unknown)}
                             </div>
-                            <table className="pf-v6-c-table services-list security-vulnerabilities__list" aria-label={_("Trivy vulnerability findings")}>
+                            <table className="pf-v6-c-table services-list security-vulnerabilities__list" aria-label={_("OpenSCAP compliance findings")}>
                                 <tbody>
                                     {filteredFindings.map(finding => (
                                         <tr key={`${finding.id}-${finding.source}-${finding.status}`}>
