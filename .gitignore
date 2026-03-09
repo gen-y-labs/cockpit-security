@@ -28,6 +28,8 @@
 /runtime-npm-modules.txt
 /tmp/
 /tools/*
+!/tools/collect-normalized-host-record.mjs
+!/tools/host-security-normalizer.mjs
 
 # subdirs (/subdir/...)
 /packaging/arch/PKGBUILD

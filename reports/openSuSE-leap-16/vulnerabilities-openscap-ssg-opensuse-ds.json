@@ -1,0 +1,2369 @@
+{
+  "provider": "openscap",
+  "generatedAt": "2026-03-08T23:34:36.235Z",
+  "findings": [
+    {
+      "id": "xccdf_org.ssgproject.content_rule_prefer_64bit_os",
+      "summary": "Prefer to use a 64-bit Operating System when supported",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_harden_ssh_client_crypto_policy",
+      "summary": "Harden SSH client Crypto Policy",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_configure_user_data_backups",
+      "summary": "Configure Backups of User Data",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_MFEhiplsm_installed",
+      "summary": "Install the Host Intrusion Prevention System (HIPS) Module",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_partition_for_dev_shm",
+      "summary": "Ensure /dev/shm is configured",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_partition_for_home",
+      "summary": "Ensure /home Located On Separate Partition",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_partition_for_srv",
+      "summary": "Ensure /srv Located On Separate Partition",
+      "severity": "unknown",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_partition_for_tmp",
+      "summary": "Ensure /tmp Located On Separate Partition",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_partition_for_var",
+      "summary": "Ensure /var Located On Separate Partition",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_partition_for_var_log",
+      "summary": "Ensure /var/log Located On Separate Partition",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_partition_for_var_log_audit",
+      "summary": "Ensure /var/log/audit Located On Separate Partition",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_gnome_gdm_disable_xdmcp",
+      "summary": "Disable XDMCP in GDM",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sudo_add_noexec",
+      "summary": "Ensure Privileged Escalated Commands Cannot Execute Other Commands - sudo NOEXEC",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sudo_add_requiretty",
+      "summary": "Ensure Only Users Logged In To Real tty Can Execute Sudo - sudo requiretty",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sudo_add_use_pty",
+      "summary": "Ensure Only Users Logged In To Real tty Can Execute Sudo - sudo use_pty",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sudo_custom_logfile",
+      "summary": "Ensure Sudo Logfile Exists - sudo logfile",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sudo_remove_no_authenticate",
+      "summary": "Ensure Users Re-Authenticate for Privilege Escalation - sudo !authenticate",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sudo_remove_nopasswd",
+      "summary": "Ensure Users Re-Authenticate for Privilege Escalation - sudo NOPASSWD",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sudo_require_authentication",
+      "summary": "Ensure Users Re-Authenticate for Privilege Escalation - sudo",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sudo_vdsm_nopasswd",
+      "summary": "Only the VDSM User Can Use sudo NOPASSWD",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sudoers_explicit_command_args",
+      "summary": "Explicit arguments in sudo specifications",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sudoers_no_command_negation",
+      "summary": "Don't define allowed commands in sudoers by means of exclusion",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sudoers_no_root_target",
+      "summary": "Don't target root user in the sudoers file",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_gnutls-utils_installed",
+      "summary": "Ensure gnutls-utils is installed",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_nss-tools_installed",
+      "summary": "Ensure nss-tools is installed",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_disallow_bypass_password_sudo",
+      "summary": "Disallow Configuration to Bypass Password Requirements for Privilege Escalation",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_display_login_attempts",
+      "summary": "Ensure PAM Displays Last Logon/Access Notification",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_account_passwords_pam_faillock_audit",
+      "summary": "Account Lockouts Must Be Logged",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_account_passwords_pam_faillock_dir",
+      "summary": "Account Lockouts Must Persist",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_passwords_pam_faillock_audit",
+      "summary": "Account Lockouts Must Be Logged",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_account_unique_name",
+      "summary": "Ensure All Accounts on the System Have Unique Names",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_account_use_centralized_automated_auth",
+      "summary": "Use Centralized and Automated Authentication",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_maximum_age_login_defs",
+      "summary": "Set Password Maximum Age",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_minimum_age_login_defs",
+      "summary": "Set Password Minimum Age",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_password_minlen_login_defs",
+      "summary": "Set Password Minimum Length in login.defs",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_password_warn_age_login_defs",
+      "summary": "Set Password Warning Age",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_password_all_shadowed",
+      "summary": "Verify All Account Password Hashes are Shadowed",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_password_last_change_is_in_past",
+      "summary": "Ensure all users last password change date is in the past",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_gid_passwd_group_same",
+      "summary": "All GIDs referenced in /etc/passwd must be defined in /etc/group",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_no_empty_passwords",
+      "summary": "Prevent Login to Accounts With Empty Password",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_no_empty_passwords_etc_shadow",
+      "summary": "Ensure There Are No Accounts With Blank or Null Passwords",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_no_netrc_files",
+      "summary": "Verify No netrc Files Exist",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_no_uid_except_zero",
+      "summary": "Verify Only Root Has UID 0",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_root_gid_zero",
+      "summary": "Verify Root Has A Primary GID 0",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_no_direct_root_logins",
+      "summary": "Direct root Logins Not Allowed",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_restrict_serial_port_logins",
+      "summary": "Restrict Serial Port Root Logins",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_securetty_root_login_console_only",
+      "summary": "Restrict Virtual Console Root Logins",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_logon_fail_delay",
+      "summary": "Ensure the Logon Failure Delay is Set Correctly in login.defs",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_max_concurrent_login_sessions",
+      "summary": "Limit the Number of Concurrent Login Sessions Allowed Per User",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_polyinstantiated_tmp",
+      "summary": "Configure Polyinstantiation of /tmp Directories",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_polyinstantiated_var_tmp",
+      "summary": "Configure Polyinstantiation of /var/tmp Directories",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_home_dirs",
+      "summary": "Ensure that User Home Directories are not Group-Writable or World-Readable",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_root_path_dirs_no_write",
+      "summary": "Ensure that Root's Path Does Not Include World or Group-Writable Directories",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_root_path_no_dot",
+      "summary": "Ensure that Root's Path Does Not Include Relative Paths or Null Directories",
+      "severity": "unknown",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_umask_etc_login_defs",
+      "summary": "Ensure the Default Umask is Set Correctly in login.defs",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_accounts_umask_etc_profile",
+      "summary": "Ensure the Default Umask is Set Correctly in /etc/profile",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_grub2_disable_recovery",
+      "summary": "Disable Recovery Booting",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_grub2_enable_iommu_force",
+      "summary": "IOMMU configuration directive",
+      "severity": "unknown",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_grub2_l1tf_argument",
+      "summary": "Configure L1 Terminal Fault mitigations",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_grub2_mce_argument",
+      "summary": "Force kernel panic on uncorrected MCEs",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_grub2_nosmap_argument_absent",
+      "summary": "Ensure SMAP is not disabled during boot",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_grub2_nosmep_argument_absent",
+      "summary": "Ensure SMEP is not disabled during boot",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_grub2_rng_core_default_quality_argument",
+      "summary": "Configure the confidence in TPM for entropy",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_grub2_slab_nomerge_argument",
+      "summary": "Disable merging of slabs with similar size",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_grub2_spec_store_bypass_disable_argument",
+      "summary": "Configure Speculative Store Bypass Mitigation",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_grub2_spectre_v2_argument",
+      "summary": "Enforce Spectre v2 mitigation",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_grub2_systemd_debug-shell_argument_absent",
+      "summary": "Ensure debug-shell service is not enabled during boot",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_disable_entropy_contribution_for_solid_state_drives",
+      "summary": "Ensure Solid State Drives Do Not Contribute To Random-Number Entropy Pool",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_acpi_custom_method",
+      "summary": "Do not allow ACPI methods to be inserted/replaced at run time",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_binfmt_misc",
+      "summary": "Disable kernel support for MISC binaries",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_bug",
+      "summary": "Enable support for BUG()",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_compat_brk",
+      "summary": "Disable compatibility with brk()",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_compat_vdso",
+      "summary": "Disable the 32-bit vDSO",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_debug_credentials",
+      "summary": "Enable checks on credential management",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_debug_fs",
+      "summary": "Disable kernel debugfs",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_debug_list",
+      "summary": "Enable checks on linked list manipulation",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_debug_notifiers",
+      "summary": "Enable checks on notifier call chains",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_debug_sg",
+      "summary": "Enable checks on scatter-gather (SG) table operations",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_default_mmap_min_addr",
+      "summary": "Configure Low Address Space To Protect From User Allocation",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_devkmem",
+      "summary": "Disable /dev/kmem virtual device support",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_hibernation",
+      "summary": "Disable hibernation",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_ia32_emulation",
+      "summary": "Disable IA32 emulation",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_ipv6",
+      "summary": "Disable the IPv6 protocol",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_kexec",
+      "summary": "Disable kexec system call",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_legacy_ptys",
+      "summary": "Disable legacy (BSD) PTY support",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_module_sig",
+      "summary": "Enable module signature verification",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_module_sig_all",
+      "summary": "Enable automatic signing of all modules",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_module_sig_force",
+      "summary": "Require modules to be validly signed",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_module_sig_hash",
+      "summary": "Specify the hash to use when signing modules",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_module_sig_key",
+      "summary": "Specify module signing key to use",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_module_sig_sha512",
+      "summary": "Sign kernel modules with SHA-512",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_page_poisoning_no_sanity",
+      "summary": "Enable poison without sanity check",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_page_poisoning_zero",
+      "summary": "Use zero for poisoning instead of debugging value",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_page_table_isolation",
+      "summary": "Remove the kernel mapping in user mode",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_panic_on_oops",
+      "summary": "Kernel panic oops",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_panic_timeout",
+      "summary": "Kernel panic timeout",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_proc_kcore",
+      "summary": "Disable support for /proc/kkcore",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_randomize_base",
+      "summary": "Randomize the address of the kernel image (KASLR)",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_randomize_memory",
+      "summary": "Randomize the kernel memory sections",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_retpoline",
+      "summary": "Avoid speculative indirect branches in kernel",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_seccomp",
+      "summary": "Enable seccomp to safely compute untrusted bytecode",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_seccomp_filter",
+      "summary": "Enable use of Berkeley Packet Filter with seccomp",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_security",
+      "summary": "Enable different security models",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_security_dmesg_restrict",
+      "summary": "Restrict unprivileged access to the kernel syslog",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_security_writable_hooks",
+      "summary": "Disable mutable hooks",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_security_yama",
+      "summary": "Enable Yama support",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_slub_debug",
+      "summary": "Enable SLUB debugging support",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_syn_cookies",
+      "summary": "Enable TCP/IP syncookie support",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_unmap_kernel_at_el0",
+      "summary": "Unmap kernel when running in userspace (aka KAISER)",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_config_x86_vsyscall_emulation",
+      "summary": "Disable x86 vsyscall emulation",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_rsyslog_installed",
+      "summary": "Ensure rsyslog is Installed",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_service_rsyslog_enabled",
+      "summary": "Enable rsyslog Service",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_rsyslog_encrypt_offload_actionsendstreamdriverauthmode",
+      "summary": "Ensure Rsyslog Authenticates Off-Loaded Audit Records",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_rsyslog_encrypt_offload_actionsendstreamdrivermode",
+      "summary": "Ensure Rsyslog Encrypts Off-Loaded Audit Records",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_rsyslog_encrypt_offload_defaultnetstreamdriver",
+      "summary": "Ensure Rsyslog Encrypts Off-Loaded Audit Records",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_rsyslog_files_groupownership",
+      "summary": "Ensure Log Files Are Owned By Appropriate Group",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_rsyslog_files_ownership",
+      "summary": "Ensure Log Files Are Owned By Appropriate User",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_rsyslog_files_permissions",
+      "summary": "Ensure System Log Files Have Correct Permissions",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_service_systemd-journald_enabled",
+      "summary": "Enable systemd-journald Service",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_logrotate_installed",
+      "summary": "Ensure logrotate is Installed",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_ensure_logrotate_activated",
+      "summary": "Ensure Logrotate Runs Periodically",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_syslogng_installed",
+      "summary": "Ensure syslog-ng is Installed",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_service_syslogng_enabled",
+      "summary": "Enable syslog-ng Service",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_rsyslog_accept_remote_messages_tcp",
+      "summary": "Enable rsyslog to Accept Messages via TCP, if Acting As Log Server",
+      "severity": "unknown",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_rsyslog_accept_remote_messages_udp",
+      "summary": "Enable rsyslog to Accept Messages via UDP, if Acting As Log Server",
+      "severity": "unknown",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_rsyslog_remote_loghost",
+      "summary": "Ensure Logs Sent To Remote Host",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_service_ip6tables_enabled",
+      "summary": "Verify ip6tables Enabled if Using IPv6",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_service_iptables_enabled",
+      "summary": "Verify iptables Enabled",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_set_ip6tables_default_rule",
+      "summary": "Set Default ip6tables Policy for Incoming Packets",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_set_iptables_default_rule",
+      "summary": "Set Default iptables Policy for Incoming Packets",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_set_iptables_default_rule_forward",
+      "summary": "Set Default iptables Policy for Forwarded Packets",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_module_ipv6_option_disabled",
+      "summary": "Disable IPv6 Networking Support Automatic Loading",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sysctl_net_ipv6_conf_all_disable_ipv6",
+      "summary": "Disable IPv6 Addressing on All IPv6 Interfaces",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sysctl_net_ipv6_conf_default_disable_ipv6",
+      "summary": "Disable IPv6 Addressing on IPv6 Interfaces by Default",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sysctl_net_ipv4_conf_all_accept_local",
+      "summary": "Disable Accepting Packets Routed Between Local Interfaces",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sysctl_net_ipv4_conf_all_arp_filter",
+      "summary": "Configure ARP filtering for All IPv4 Interfaces",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sysctl_net_ipv4_conf_all_arp_ignore",
+      "summary": "Configure Response Mode of ARP Requests for All IPv4 Interfaces",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sysctl_net_ipv4_conf_all_route_localnet",
+      "summary": "Prevent Routing External Traffic to Local Loopback on All IPv4 Interfaces",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sysctl_net_ipv4_conf_all_shared_media",
+      "summary": "Configure Sending and Accepting Shared Media Redirects for All IPv4 Interfaces",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sysctl_net_ipv4_conf_default_shared_media",
+      "summary": "Configure Sending and Accepting Shared Media Redirects by Default",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_service_ufw_enabled",
+      "summary": "Verify ufw Enabled",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_module_rds_disabled",
+      "summary": "Disable RDS Support",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_module_tipc_disabled",
+      "summary": "Disable TIPC Support",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_dir_perms_world_writable_sticky_bits",
+      "summary": "Verify that All World-Writable Directories Have Sticky Bits Set",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_systemmap",
+      "summary": "Verify Permissions on System.map Files",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_unauthorized_world_writable",
+      "summary": "Ensure No World-Writable Files Exist",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sysctl_fs_protected_hardlinks",
+      "summary": "Enable Kernel Parameter to Enforce DAC on Hardlinks",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sysctl_fs_protected_symlinks",
+      "summary": "Enable Kernel Parameter to Enforce DAC on Symlinks",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_groupowner_backup_etc_group",
+      "summary": "Verify Group Who Owns Backup group File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_groupowner_backup_etc_gshadow",
+      "summary": "Verify Group Who Owns Backup gshadow File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_groupowner_backup_etc_passwd",
+      "summary": "Verify Group Who Owns Backup passwd File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_groupowner_backup_etc_shadow",
+      "summary": "Verify User Who Owns Backup shadow File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_groupowner_etc_group",
+      "summary": "Verify Group Who Owns group File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_groupowner_etc_gshadow",
+      "summary": "Verify Group Who Owns gshadow File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_groupowner_etc_passwd",
+      "summary": "Verify Group Who Owns passwd File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_groupowner_etc_shadow",
+      "summary": "Verify Group Who Owns shadow File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_owner_backup_etc_group",
+      "summary": "Verify User Who Owns Backup group File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_owner_backup_etc_gshadow",
+      "summary": "Verify User Who Owns Backup gshadow File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_owner_backup_etc_passwd",
+      "summary": "Verify User Who Owns Backup passwd File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_owner_backup_etc_shadow",
+      "summary": "Verify Group Who Owns Backup shadow File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_owner_etc_group",
+      "summary": "Verify User Who Owns group File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_owner_etc_gshadow",
+      "summary": "Verify User Who Owns gshadow File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_owner_etc_passwd",
+      "summary": "Verify User Who Owns passwd File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_owner_etc_shadow",
+      "summary": "Verify User Who Owns shadow File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_backup_etc_group",
+      "summary": "Verify Permissions on Backup group File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_backup_etc_gshadow",
+      "summary": "Verify Permissions on Backup gshadow File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_backup_etc_passwd",
+      "summary": "Verify Permissions on Backup passwd File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_backup_etc_shadow",
+      "summary": "Verify Permissions on Backup shadow File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_etc_group",
+      "summary": "Verify Permissions on group File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_etc_gshadow",
+      "summary": "Verify Permissions on gshadow File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_etc_passwd",
+      "summary": "Verify Permissions on passwd File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_etc_shadow",
+      "summary": "Verify Permissions on shadow File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_groupowner_var_log",
+      "summary": "Verify Group Who Owns /var/log Directory",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_groupowner_var_log_messages",
+      "summary": "Verify Group Who Owns /var/log/messages File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_groupowner_var_log_syslog",
+      "summary": "Verify Group Who Owns /var/log/syslog File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_owner_var_log",
+      "summary": "Verify User Who Owns /var/log Directory",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_owner_var_log_messages",
+      "summary": "Verify User Who Owns /var/log/messages File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_owner_var_log_syslog",
+      "summary": "Verify User Who Owns /var/log/syslog File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_var_log",
+      "summary": "Verify Permissions on /var/log Directory",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_var_log_messages",
+      "summary": "Verify Permissions on /var/log/messages File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_var_log_syslog",
+      "summary": "Verify Permissions on /var/log/syslog File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_dir_ownership_binary_dirs",
+      "summary": "Verify that System Executable Have Root Ownership",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_dir_ownership_library_dirs",
+      "summary": "Verify that Shared Library Directories Have Root Ownership",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_dir_permissions_binary_dirs",
+      "summary": "Verify that System Executable Directories Have Restrictive Permissions",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_dir_permissions_library_dirs",
+      "summary": "Verify that Shared Library Directories Have Restrictive Permissions",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_ownership_binary_dirs",
+      "summary": "Verify that System Executables Have Root Ownership",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_ownership_library_dirs",
+      "summary": "Verify that Shared Library Files Have Root Ownership",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_binary_dirs",
+      "summary": "Verify that System Executables Have Restrictive Permissions",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_library_dirs",
+      "summary": "Verify that Shared Library Files Have Restrictive Permissions",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_mount_option_dev_shm_nodev",
+      "summary": "Add nodev Option to /dev/shm",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_mount_option_dev_shm_nosuid",
+      "summary": "Add nosuid Option to /dev/shm",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_kernel_module_uvcvideo_disabled",
+      "summary": "Disable the uvcvideo module",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sysctl_kernel_panic_on_oops",
+      "summary": "Kernel panic on oops",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_coredump_disable_backtraces",
+      "summary": "Disable core dump backtraces",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_coredump_disable_storage",
+      "summary": "Disable storing core dump",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sysctl_fs_suid_dumpable",
+      "summary": "Disable Core Dumps for SUID programs",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sysctl_kernel_kptr_restrict",
+      "summary": "Restrict Exposed Kernel Pointer Addresses Access",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sysctl_kernel_randomize_va_space",
+      "summary": "Enable Randomized Layout of Virtual Address Space",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_selinux_not_disabled",
+      "summary": "Ensure SELinux is Not Disabled",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_selinux_state",
+      "summary": "Ensure SELinux State is Enforcing",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_avahi_disable_publishing",
+      "summary": "Disable Avahi Publishing",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_cron_installed",
+      "summary": "Install the cron service",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_service_cron_enabled",
+      "summary": "Enable cron Service",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_inetutils-telnetd_removed",
+      "summary": "Uninstall the inet-based telnet server",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_nis_removed",
+      "summary": "Uninstall the nis package",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_ntpdate_removed",
+      "summary": "Uninstall the ntpdate package",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_telnetd-ssl_removed",
+      "summary": "Uninstall the ssl compliant telnet server",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_telnetd_removed",
+      "summary": "Uninstall the telnet server",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_dhcp_client_restrict_options",
+      "summary": "Minimize the DHCP-Configured Options",
+      "severity": "unknown",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_dhcp_server_minimize_served_info",
+      "summary": "Minimize Served Information",
+      "severity": "unknown",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_fapolicyd_prevent_home_folder_access",
+      "summary": "fapolicyd Must be Configured to Limit Access to Users Home Folders",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_ftp_configure_firewall",
+      "summary": "Configure Firewalls to Protect the FTP Server",
+      "severity": "unknown",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_ftp_limit_users",
+      "summary": "Limit Users Allowed FTP Access if Necessary",
+      "severity": "unknown",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_postfix_installed",
+      "summary": "The Postfix package is installed",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_postfix_client_configure_mail_alias",
+      "summary": "Configure System to Forward All Mail For The Root Account",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_postfix_client_configure_mail_alias_postmaster",
+      "summary": "Configure System to Forward All Mail From Postmaster to The Root Account",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_postfix_client_configure_relayhost",
+      "summary": "Configure System to Forward All Mail through a specific host",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_service_netfs_disabled",
+      "summary": "Disable Network File Systems (netfs)",
+      "severity": "unknown",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_no_all_squash_exports",
+      "summary": "Ensure All-Squashing Disabled On All Exports",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_chrony_installed",
+      "summary": "The Chrony package is installed",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_ntp_installed",
+      "summary": "Install the ntp service",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_service_chronyd_enabled",
+      "summary": "The Chronyd service is enabled",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_chronyd_specify_remote_server",
+      "summary": "A remote time server for Chrony is configured",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_chronyd_server_directive",
+      "summary": "Ensure Chrony is only configured with the server directive",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_no_rsh_trust_files",
+      "summary": "Remove Rsh Trust Files",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_openssh-server_installed",
+      "summary": "Install the OpenSSH Server Package",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_openssh_installed",
+      "summary": "Install the OpenSSH Client and Server Package",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_openssh-server_removed",
+      "summary": "Remove the OpenSSH Server Package",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_openssh_removed",
+      "summary": "Remove the OpenSSH Client and Server Package",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_service_sshd_disabled",
+      "summary": "Disable SSH Server If Possible",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_groupownership_sshd_private_key",
+      "summary": "Verify Group Ownership on SSH Server Private *_key Key Files",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_groupownership_sshd_pub_key",
+      "summary": "Verify Group Ownership on SSH Server Public *.pub Key Files",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_ownership_sshd_private_key",
+      "summary": "Verify Ownership on SSH Server Private *_key Key Files",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_ownership_sshd_pub_key",
+      "summary": "Verify Ownership on SSH Server Public *.pub Key Files",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_sshd_private_key",
+      "summary": "Verify Permissions on SSH Server Private *_key Key Files",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_sshd_pub_key",
+      "summary": "Verify Permissions on SSH Server Public *.pub Key Files",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_iptables_sshd_disabled",
+      "summary": "Remove SSH Server iptables Firewall exception (Unusual)",
+      "severity": "unknown",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_set_keepalive_0",
+      "summary": "Set SSH Client Alive Count Max to zero",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_set_keepalive",
+      "summary": "Set SSH Client Alive Count Max",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_set_idle_timeout",
+      "summary": "Set SSH Client Alive Interval",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_disable_host_auth",
+      "summary": "Disable Host-Based Authentication",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_allow_only_protocol2",
+      "summary": "Allow Only SSH Protocol 2",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_disable_compression",
+      "summary": "Disable Compression Or Set Compression to delayed",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_disable_empty_passwords",
+      "summary": "Disable SSH Access via Empty Passwords",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_disable_gssapi_auth",
+      "summary": "Disable GSSAPI Authentication",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_disable_kerb_auth",
+      "summary": "Disable Kerberos Authentication",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_disable_pubkey_auth",
+      "summary": "Disable PubkeyAuthentication Authentication",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_disable_rhosts",
+      "summary": "Disable SSH Support for .rhosts Files",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_disable_rhosts_rsa",
+      "summary": "Disable SSH Support for Rhosts RSA Authentication",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_disable_root_login",
+      "summary": "Disable SSH Root Login",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_disable_root_password_login",
+      "summary": "Disable SSH root Login with a Password (Insecure)",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_disable_tcp_forwarding",
+      "summary": "Disable SSH TCP Forwarding",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_disable_user_known_hosts",
+      "summary": "Disable SSH Support for User Known Hosts",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_disable_x11_forwarding",
+      "summary": "Disable X11 Forwarding",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_do_not_permit_user_env",
+      "summary": "Do Not Allow SSH Environment Options",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_enable_gssapi_auth",
+      "summary": "Enable GSSAPI Authentication",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_enable_pam",
+      "summary": "Enable PAM",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_enable_pubkey_auth",
+      "summary": "Enable Public Key Authentication",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_enable_strictmodes",
+      "summary": "Enable Use of Strict Mode Checking",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_enable_warning_banner",
+      "summary": "Enable SSH Warning Banner",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_enable_warning_banner_net",
+      "summary": "Enable SSH Warning Banner",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_enable_x11_forwarding",
+      "summary": "Enable Encrypted X11 Forwarding",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_limit_user_access",
+      "summary": "Limit Users' SSH Access",
+      "severity": "unknown",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_print_last_log",
+      "summary": "Enable SSH Print Last Log",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_rekey_limit",
+      "summary": "Force frequent session key renegotiation",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_set_login_grace_time",
+      "summary": "Ensure SSH LoginGraceTime is configured",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_set_loglevel_info",
+      "summary": "Set LogLevel to INFO",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_set_loglevel_verbose",
+      "summary": "Set SSH Daemon LogLevel to VERBOSE",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_set_max_auth_tries",
+      "summary": "Set SSH authentication attempt limit",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_set_max_sessions",
+      "summary": "Set SSH MaxSessions limit",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_set_maxstartups",
+      "summary": "Ensure SSH MaxStartups is configured",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sshd_use_priv_separation",
+      "summary": "Enable Use of Privilege Separation",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_audit_installed",
+      "summary": "Ensure the audit Subsystem is Installed",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_service_auditd_enabled",
+      "summary": "Enable auditd Service",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_immutable",
+      "summary": "Make the auditd Configuration Immutable",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_mac_modification",
+      "summary": "Record Events that Modify the System's Mandatory Access Controls",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_mac_modification_usr_share",
+      "summary": "Record Events that Modify the System's Mandatory Access Controls in usr/share",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_media_export",
+      "summary": "Ensure auditd Collects Information on Exporting to Media (successful)",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_networkconfig_modification",
+      "summary": "Record Events that Modify the System's Network Environment",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_session_events",
+      "summary": "Record Attempts to Alter Process and Session Initiation Information",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_sysadmin_actions",
+      "summary": "Ensure auditd Collects System Administrator Actions",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_usergroup_modification",
+      "summary": "Record Events that Modify User/Group Information",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_directory_permissions_var_log_audit",
+      "summary": "System Audit Logs Must Have Mode 0750 or Less Permissive",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_groupownership_audit_configuration",
+      "summary": "Audit Configuration Files Must Be Owned By Group root",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_ownership_audit_configuration",
+      "summary": "Audit Configuration Files Must Be Owned By Root",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_ownership_var_log_audit",
+      "summary": "System Audit Logs Must Be Owned By Root",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_audit_configuration",
+      "summary": "Audit Configuration Files Permissions are 640 or More Restrictive",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_chmod",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - chmod",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_chown",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - chown",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_fchmod",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - fchmod",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_fchmodat",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - fchmodat",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_fchown",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - fchown",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_fchownat",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - fchownat",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_fremovexattr",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - fremovexattr",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_fsetxattr",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - fsetxattr",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_lchown",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - lchown",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_lremovexattr",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - lremovexattr",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_lsetxattr",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - lsetxattr",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_removexattr",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - removexattr",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_setxattr",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - setxattr",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_umount",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - umount",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_dac_modification_umount2",
+      "summary": "Record Events that Modify the System's Discretionary Access Controls - umount2",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_file_deletion_events_rename",
+      "summary": "Ensure auditd Collects File Deletion Events by User - rename",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_file_deletion_events_renameat",
+      "summary": "Ensure auditd Collects File Deletion Events by User - renameat",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_file_deletion_events_rmdir",
+      "summary": "Ensure auditd Collects File Deletion Events by User - rmdir",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_file_deletion_events_unlink",
+      "summary": "Ensure auditd Collects File Deletion Events by User - unlink",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_file_deletion_events_unlinkat",
+      "summary": "Ensure auditd Collects File Deletion Events by User - unlinkat",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_privileged_commands_init",
+      "summary": "Ensure auditd Collects Information on the Use of Privileged Commands - init",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_privileged_commands_poweroff",
+      "summary": "Ensure auditd Collects Information on the Use of Privileged Commands - poweroff",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_privileged_commands_reboot",
+      "summary": "Ensure auditd Collects Information on the Use of Privileged Commands - reboot",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_privileged_commands_shutdown",
+      "summary": "Ensure auditd Collects Information on the Use of Privileged Commands - shutdown",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_privileged_commands",
+      "summary": "Ensure auditd Collects Information on the Use of Privileged Commands",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_time_adjtimex",
+      "summary": "Record attempts to alter time through adjtimex",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_time_clock_settime",
+      "summary": "Record Attempts to Alter Time Through clock_settime",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_time_settimeofday",
+      "summary": "Record attempts to alter time through settimeofday",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_time_stime",
+      "summary": "Record Attempts to Alter Time Through stime",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_audit_rules_time_watch_localtime",
+      "summary": "Record Attempts to Alter the localtime File",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_audispd_syslog_plugin_activated",
+      "summary": "Configure auditd to use audispd's syslog plugin",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_data_disk_error_action",
+      "summary": "Configure auditd Disk Error Action on Disk Error",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_data_disk_error_action_stig",
+      "summary": "Configure auditd Disk Error Action on Disk Error",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_data_disk_full_action",
+      "summary": "Configure auditd Disk Full Action when Disk Space Is Full",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_data_disk_full_action_stig",
+      "summary": "Configure auditd Disk Full Action when Disk Space Is Full",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_data_retention_action_mail_acct",
+      "summary": "Configure auditd mail_acct Action on Low Disk Space",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_data_retention_admin_space_left_action",
+      "summary": "Configure auditd admin_space_left Action on Low Disk Space",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_data_retention_max_log_file",
+      "summary": "Configure auditd Max Log File Size",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_data_retention_max_log_file_action",
+      "summary": "Configure auditd max_log_file_action Upon Reaching Maximum Log Size",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_data_retention_max_log_file_action_stig",
+      "summary": "Configure auditd max_log_file_action Upon Reaching Maximum Log Size",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_data_retention_num_logs",
+      "summary": "Configure auditd Number of Logs Retained",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_data_retention_space_left_action",
+      "summary": "Configure auditd space_left Action on Low Disk Space",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_freq",
+      "summary": "Set number of records to cause an explicit flush to audit logs",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_local_events",
+      "summary": "Include Local Events in Audit Logs",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_log_format",
+      "summary": "Resolve information before writing to audit logs",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_overflow_action",
+      "summary": "Appropriate Action Must be Setup When the Internal Audit Event Queue is Full",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_auditd_write_logs",
+      "summary": "Write Audit Logs to the Disk",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    }
+  ],
+  "summary": {
+    "critical": 0,
+    "high": 20,
+    "medium": 269,
+    "low": 33,
+    "unknown": 12,
+    "total": 334
+  },
+  "metadata": {
+    "scan_timestamp": "2026-03-08T23:34:36.235Z",
+    "host_id": "suse-vm",
+    "distro": "opensuse-leap",
+    "distro_version": "16.0",
+    "kernel_version": "6.12.0-160000.5-default",
+    "environment_type": "unknown",
+    "host_role": "unknown",
+    "package_manager": "zypper",
+    "cpu_count": 4,
+    "memory_gb": 3.8,
+    "installed_package_count": 1495,
+    "running_service_count": 35,
+    "scan_seconds": 0.46,
+    "scanner_version": "1.4.1",
+    "scanner_dataset_version": "unknown"
+  }
+}

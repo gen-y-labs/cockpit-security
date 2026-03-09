@@ -4,6 +4,7 @@
 
 import cockpit from "cockpit";
 
+import { createReportMetadata } from '../report-metadata';
 import type {
     SecurityFinding,
     SecurityProvider,
@@ -13,6 +14,7 @@ import type {
 } from '../security-report';
 
 const ZYPPER_COMMAND = ["zypper", "-q", "list-patches", "--category", "security"];
+const ZYPPER_VERSION_COMMAND = ["zypper", "--version"];
 
 function normalizeSeverity(value: string): SecuritySeverity {
     const severity = value.toLowerCase();
@@ -94,18 +96,40 @@ function formatSpawnError(error: unknown): string {
     return cockpit.gettext("Unknown command error");
 }
 
+function parseZypperVersion(output: string): string {
+    const firstLine = output.split('\n')
+            .map(line => line.trim())
+            .find(Boolean) || "";
+    if (!firstLine)
+        return "unknown";
+
+    return firstLine;
+}
+
 export class NativeZypperProvider implements SecurityProvider {
     async getReport(): Promise<SecurityReport> {
+        const startedAt = Date.now();
         const output = await cockpit.spawn(ZYPPER_COMMAND, { err: "message", environ: ["LC_ALL=C"] })
                 .catch(error => Promise.reject(new Error(formatSpawnError(error))));
 
         const findings = parseZypperOutput(output.toString());
+        const generatedAt = new Date().toISOString();
+        const scanSeconds = (Date.now() - startedAt) / 1000;
+        const scannerVersionOutput = await cockpit.spawn(ZYPPER_VERSION_COMMAND, { err: "message", environ: ["LC_ALL=C"] }).catch(() => "");
+        const metadata = await createReportMetadata({
+            generatedAt,
+            scanSeconds,
+            packageManager: "zypper",
+            scannerVersion: parseZypperVersion(scannerVersionOutput.toString()),
+            scannerDatasetVersion: "unknown",
+        });
 
         return {
             provider: "native-zypper",
-            generatedAt: new Date().toISOString(),
+            generatedAt,
             findings,
             summary: createSummary(findings),
+            metadata,
         };
     }
 }

@@ -4,6 +4,7 @@
 
 import cockpit from "cockpit";
 
+import { createReportMetadata } from '../report-metadata';
 import type {
     SecurityFinding,
     SecurityProvider,
@@ -32,6 +33,7 @@ interface TrivyOutput {
 }
 
 let cachedReport: SecurityReport | null = null;
+let cachedTrivyVersion: string | null = null;
 const TRIVY_BINARY = "/usr/bin/trivy";
 export const TRIVY_INSTALL_URL = "https://trivy.dev/docs/latest/getting-started/installation/";
 
@@ -149,17 +151,54 @@ function getTrivyCommand(): string[] {
     ];
 }
 
+function getTrivyVersionCommand(): string[] {
+    return [TRIVY_BINARY, "--version"];
+}
+
+function parseTrivyVersion(output: string): string {
+    const versionMatch = output.match(/Version:\s*([^\s]+)/i);
+    if (versionMatch && versionMatch[1])
+        return versionMatch[1];
+
+    const firstLine = output.split('\n')
+            .map(line => line.trim())
+            .find(Boolean) || "";
+    if (!firstLine)
+        return "unknown";
+
+    return firstLine;
+}
+
+async function getTrivyVersion(): Promise<string> {
+    if (cachedTrivyVersion)
+        return cachedTrivyVersion;
+
+    const output = await cockpit.spawn(getTrivyVersionCommand(), { err: "message", environ: ["LC_ALL=C"] }).catch(() => "");
+    cachedTrivyVersion = parseTrivyVersion(output.toString());
+    return cachedTrivyVersion;
+}
+
 export class TrivyProvider implements SecurityProvider {
     async getReport(): Promise<SecurityReport> {
+        const startedAt = Date.now();
         const output = await cockpit.spawn(getTrivyCommand(), { err: "message", environ: ["LC_ALL=C"] })
                 .catch(error => Promise.reject(new Error(formatSpawnError(error))));
 
         const findings = parseTrivyOutput(output.toString());
+        const generatedAt = new Date().toISOString();
+        const scanSeconds = (Date.now() - startedAt) / 1000;
+        const metadata = await createReportMetadata({
+            generatedAt,
+            scanSeconds,
+            scannerVersion: await getTrivyVersion(),
+            scannerDatasetVersion: "unknown",
+        });
         const report: SecurityReport = {
             provider: "trivy",
-            generatedAt: new Date().toISOString(),
+            generatedAt,
             findings,
             summary: createSummary(findings),
+            metadata,
         };
 
         cachedReport = report;

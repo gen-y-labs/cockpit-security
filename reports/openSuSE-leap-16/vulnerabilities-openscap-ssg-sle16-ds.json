@@ -1,0 +1,150 @@
+{
+  "provider": "openscap",
+  "generatedAt": "2026-03-08T23:34:54.161Z",
+  "findings": [
+    {
+      "id": "xccdf_org.ssgproject.content_rule_aide_build_database",
+      "summary": "Build and Test AIDE Database",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_aide_periodic_checking_systemd_timer",
+      "summary": "Configure Systemd Timer Execution of AIDE",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_installed_OS_is_vendor_supported",
+      "summary": "The Installed Operating System Is Vendor Supported",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_display_login_attempts",
+      "summary": "Ensure PAM Displays Last Logon/Access Notification",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_no_shelllogin_for_systemaccounts",
+      "summary": "Ensure that System Accounts Do Not Run a Shell Upon Login",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_restrict_serial_port_logins",
+      "summary": "Restrict Serial Port Root Logins",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_grub2_nosmep_argument_absent",
+      "summary": "Ensure SMEP is not disabled during boot",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_grub2_spectre_v2_argument",
+      "summary": "Enforce Spectre v2 mitigation",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_rsyslog_remote_loghost",
+      "summary": "Ensure Logs Sent To Remote Host",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_file_permissions_ungroupowned",
+      "summary": "Ensure All Files Are Owned by a Group",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_no_files_unowned_by_user",
+      "summary": "Ensure All Files Are Owned by a User",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_bios_enable_execution_restrictions",
+      "summary": "Enable NX or XD Support in the BIOS",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_install_PAE_kernel_on_x86-32",
+      "summary": "Install PAE Kernel on Supported 32-bit x86 Systems",
+      "severity": "unknown",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_package_libselinux_installed",
+      "summary": "Install libselinux Package",
+      "severity": "high",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_sebool_selinuxuser_execmod",
+      "summary": "Enable the selinuxuser_execmod SELinux Boolean",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_service_auditd_enabled",
+      "summary": "Enable auditd Service",
+      "severity": "medium",
+      "status": "notselected",
+      "source": "openscap"
+    },
+    {
+      "id": "xccdf_org.ssgproject.content_rule_grub2_audit_argument",
+      "summary": "Enable Auditing for Processes Which Start Prior to the Audit Daemon",
+      "severity": "low",
+      "status": "notselected",
+      "source": "openscap"
+    }
+  ],
+  "summary": {
+    "critical": 0,
+    "high": 3,
+    "medium": 11,
+    "low": 2,
+    "unknown": 1,
+    "total": 17
+  },
+  "metadata": {
+    "scan_timestamp": "2026-03-08T23:34:54.161Z",
+    "host_id": "suse-vm",
+    "distro": "opensuse-leap",
+    "distro_version": "16.0",
+    "kernel_version": "6.12.0-160000.5-default",
+    "environment_type": "unknown",
+    "host_role": "unknown",
+    "package_manager": "zypper",
+    "cpu_count": 4,
+    "memory_gb": 3.8,
+    "installed_package_count": 1495,
+    "running_service_count": 35,
+    "scan_seconds": 0.16,
+    "scanner_version": "1.4.1",
+    "scanner_dataset_version": "unknown"
+  }
+}

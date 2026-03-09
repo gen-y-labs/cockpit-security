@@ -1,0 +1,843 @@
+{
+  "provider": "trivy",
+  "generatedAt": "2026-03-08T23:34:26.629Z",
+  "findings": [
+    {
+      "id": "openSUSE-SU-2026:20039-1-bind-utils-1",
+      "summary": "Security update for bind (bind-utils 9.20.11-160000.2.2 -> 9.20.15-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20091-1-bind-utils-2",
+      "summary": "Security update for bind (bind-utils 9.20.11-160000.2.2 -> 9.20.18-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20182-1-cockpit-ws-3",
+      "summary": "Security update for cockpit (cockpit-ws 340-160000.3.2 -> 340-160000.4.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20244-1-cockpit-ws-4",
+      "summary": "Security update for cockpit-machines, cockpit (cockpit-ws 340-160000.3.2 -> 354-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20182-1-cockpit-ws-selinux-5",
+      "summary": "Security update for cockpit (cockpit-ws-selinux 340-160000.3.2 -> 340-160000.4.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20244-1-cockpit-ws-selinux-6",
+      "summary": "Security update for cockpit-machines, cockpit (cockpit-ws-selinux 340-160000.3.2 -> 354-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20172-1-cups-7",
+      "summary": "Security update for cups (cups 2.4.11-160000.2.2 -> 2.4.16-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20172-1-cups-client-8",
+      "summary": "Security update for cups (cups-client 2.4.11-160000.2.2 -> 2.4.16-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20172-1-cups-config-9",
+      "summary": "Security update for cups (cups-config 2.4.11-160000.2.2 -> 2.4.16-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20090-1-curl-10",
+      "summary": "Security update for curl (curl 8.14.1-160000.2.2 -> 8.14.1-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20031-1-curl-11",
+      "summary": "Security update for curl (curl 8.14.1-160000.2.2 -> 8.14.1-160000.4.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20029-1-dirmngr-12",
+      "summary": "Security update for gpg2 (dirmngr 2.5.5-160000.2.2 -> 2.5.5-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20136-1-dirmngr-13",
+      "summary": "Security update for gpg2 (dirmngr 2.5.5-160000.2.2 -> 2.5.5-160000.4.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20084-1-gdk-pixbuf-query-loaders-14",
+      "summary": "Security update for gdk-pixbuf (gdk-pixbuf-query-loaders 2.42.12-160000.2.2 -> 2.42.12-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20084-1-gdk-pixbuf-thumbnailer-15",
+      "summary": "Security update for gdk-pixbuf (gdk-pixbuf-thumbnailer 2.42.12-160000.2.2 -> 2.42.12-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20018-1-glib2-tools-16",
+      "summary": "Security update for glib2 (glib2-tools 2.84.3-160000.2.2 -> 2.84.4-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20150-1-glib2-tools-17",
+      "summary": "Security update for glib2 (glib2-tools 2.84.3-160000.2.2 -> 2.84.4-160000.2.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20133-1-glibc-18",
+      "summary": "Security update for glibc (glibc 2.40-160000.2.2 -> 2.40-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20133-1-glibc-extra-19",
+      "summary": "Security update for glibc (glibc-extra 2.40-160000.2.2 -> 2.40-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20133-1-glibc-gconv-modules-extra-20",
+      "summary": "Security update for glibc (glibc-gconv-modules-extra 2.40-160000.2.2 -> 2.40-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20133-1-glibc-locale-21",
+      "summary": "Security update for glibc (glibc-locale 2.40-160000.2.2 -> 2.40-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20133-1-glibc-locale-base-22",
+      "summary": "Security update for glibc (glibc-locale-base 2.40-160000.2.2 -> 2.40-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20029-1-gpg2-23",
+      "summary": "Security update for gpg2 (gpg2 2.5.5-160000.2.2 -> 2.5.5-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20136-1-gpg2-24",
+      "summary": "Security update for gpg2 (gpg2 2.5.5-160000.2.2 -> 2.5.5-160000.4.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20163-1-grub2-arm64-efi-25",
+      "summary": "Security update for grub2 (grub2-arm64-efi 2.12-160000.2.2 -> 2.12-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20163-1-grub2-common-26",
+      "summary": "Security update for grub2 (grub2-common 2.12-160000.2.2 -> 2.12-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20163-1-grub2-snapper-plugin-27",
+      "summary": "Security update for grub2 (grub2-snapper-plugin 2.12-160000.2.2 -> 2.12-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20163-1-grub2-systemd-sleep-plugin-28",
+      "summary": "Security update for grub2 (grub2-systemd-sleep-plugin 2.12-160000.2.2 -> 2.12-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025-20011-1-kernel-default-29",
+      "summary": "Security update for the Linux Kernel (kernel-default 6.12.0-160000.5.1 -> 6.12.0-160000.6.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20081-1-kernel-default-30",
+      "summary": "Security update for the Linux Kernel (kernel-default 6.12.0-160000.5.1 -> 6.12.0-160000.6.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20091-1-kernel-default-31",
+      "summary": "Security update for the Linux Kernel (kernel-default 6.12.0-160000.5.1 -> 6.12.0-160000.7.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20172-1-kernel-default-32",
+      "summary": "Security update for the Linux Kernel (kernel-default 6.12.0-160000.5.1 -> 6.12.0-160000.8.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20145-1-kernel-default-33",
+      "summary": "Security update for the Linux Kernel (kernel-default 6.12.0-160000.5.1 -> 6.12.0-160000.9.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20287-1-kernel-default-34",
+      "summary": "Security update for the Linux Kernel (kernel-default 6.12.0-160000.5.1 -> 6.12.0-160000.26.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025-20011-1-kernel-default-extra-35",
+      "summary": "Security update for the Linux Kernel (kernel-default-extra 6.12.0-160000.5.1 -> 6.12.0-160000.6.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20081-1-kernel-default-extra-36",
+      "summary": "Security update for the Linux Kernel (kernel-default-extra 6.12.0-160000.5.1 -> 6.12.0-160000.6.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20091-1-kernel-default-extra-37",
+      "summary": "Security update for the Linux Kernel (kernel-default-extra 6.12.0-160000.5.1 -> 6.12.0-160000.7.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20172-1-kernel-default-extra-38",
+      "summary": "Security update for the Linux Kernel (kernel-default-extra 6.12.0-160000.5.1 -> 6.12.0-160000.8.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20145-1-kernel-default-extra-39",
+      "summary": "Security update for the Linux Kernel (kernel-default-extra 6.12.0-160000.5.1 -> 6.12.0-160000.9.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20287-1-kernel-default-extra-40",
+      "summary": "Security update for the Linux Kernel (kernel-default-extra 6.12.0-160000.5.1 -> 6.12.0-160000.26.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025-20011-1-kernel-default-optional-41",
+      "summary": "Security update for the Linux Kernel (kernel-default-optional 6.12.0-160000.5.1 -> 6.12.0-160000.6.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20081-1-kernel-default-optional-42",
+      "summary": "Security update for the Linux Kernel (kernel-default-optional 6.12.0-160000.5.1 -> 6.12.0-160000.6.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20091-1-kernel-default-optional-43",
+      "summary": "Security update for the Linux Kernel (kernel-default-optional 6.12.0-160000.5.1 -> 6.12.0-160000.7.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20172-1-kernel-default-optional-44",
+      "summary": "Security update for the Linux Kernel (kernel-default-optional 6.12.0-160000.5.1 -> 6.12.0-160000.8.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20145-1-kernel-default-optional-45",
+      "summary": "Security update for the Linux Kernel (kernel-default-optional 6.12.0-160000.5.1 -> 6.12.0-160000.9.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20287-1-kernel-default-optional-46",
+      "summary": "Security update for the Linux Kernel (kernel-default-optional 6.12.0-160000.5.1 -> 6.12.0-160000.26.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20013-1-libavahi-client3-47",
+      "summary": "Security update for avahi (libavahi-client3 0.8-160000.2.2 -> 0.8-160000.3.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20110-1-libavahi-client3-48",
+      "summary": "Security update for avahi (libavahi-client3 0.8-160000.2.2 -> 0.8-160000.4.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20013-1-libavahi-common3-49",
+      "summary": "Security update for avahi (libavahi-common3 0.8-160000.2.2 -> 0.8-160000.3.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20110-1-libavahi-common3-50",
+      "summary": "Security update for avahi (libavahi-common3 0.8-160000.2.2 -> 0.8-160000.4.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20013-1-libavahi-glib1-51",
+      "summary": "Security update for avahi (libavahi-glib1 0.8-160000.2.2 -> 0.8-160000.3.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20110-1-libavahi-glib1-52",
+      "summary": "Security update for avahi (libavahi-glib1 0.8-160000.2.2 -> 0.8-160000.4.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20172-1-libcups2-53",
+      "summary": "Security update for cups (libcups2 2.4.11-160000.2.2 -> 2.4.16-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20172-1-libcupsimage2-54",
+      "summary": "Security update for cups (libcupsimage2 2.4.11-160000.2.2 -> 2.4.16-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20090-1-libcurl4-55",
+      "summary": "Security update for curl (libcurl4 8.14.1-160000.2.2 -> 8.14.1-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20031-1-libcurl4-56",
+      "summary": "Security update for curl (libcurl4 8.14.1-160000.2.2 -> 8.14.1-160000.4.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20055-1-libexpat1-57",
+      "summary": "Security update for expat (libexpat1 2.7.1-160000.2.2 -> 2.7.1-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20306-1-libexpat1-58",
+      "summary": "Security update for expat (libexpat1 2.7.1-160000.2.2 -> 2.7.1-160000.4.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20312-1-libexslt0-59",
+      "summary": "Security update for libxml2, libxslt (libexslt0 1.1.43-160000.3.1 -> 1.1.43-160000.4.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20084-1-libgdk_pixbuf-2_0-0-60",
+      "summary": "Security update for gdk-pixbuf (libgdk_pixbuf-2_0-0 2.42.12-160000.2.2 -> 2.42.12-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20018-1-libgio-2_0-0-61",
+      "summary": "Security update for glib2 (libgio-2_0-0 2.84.3-160000.2.2 -> 2.84.4-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20150-1-libgio-2_0-0-62",
+      "summary": "Security update for glib2 (libgio-2_0-0 2.84.3-160000.2.2 -> 2.84.4-160000.2.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20018-1-libgirepository-2_0-0-63",
+      "summary": "Security update for glib2 (libgirepository-2_0-0 2.84.3-160000.2.2 -> 2.84.4-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20150-1-libgirepository-2_0-0-64",
+      "summary": "Security update for glib2 (libgirepository-2_0-0 2.84.3-160000.2.2 -> 2.84.4-160000.2.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20018-1-libglib-2_0-0-65",
+      "summary": "Security update for glib2 (libglib-2_0-0 2.84.3-160000.2.2 -> 2.84.4-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20150-1-libglib-2_0-0-66",
+      "summary": "Security update for glib2 (libglib-2_0-0 2.84.3-160000.2.2 -> 2.84.4-160000.2.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20018-1-libgmodule-2_0-0-67",
+      "summary": "Security update for glib2 (libgmodule-2_0-0 2.84.3-160000.2.2 -> 2.84.4-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20150-1-libgmodule-2_0-0-68",
+      "summary": "Security update for glib2 (libgmodule-2_0-0 2.84.3-160000.2.2 -> 2.84.4-160000.2.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20018-1-libgobject-2_0-0-69",
+      "summary": "Security update for glib2 (libgobject-2_0-0 2.84.3-160000.2.2 -> 2.84.4-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20150-1-libgobject-2_0-0-70",
+      "summary": "Security update for glib2 (libgobject-2_0-0 2.84.3-160000.2.2 -> 2.84.4-160000.2.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20048-1-libldb2-71",
+      "summary": "Security update for samba (libldb2 4.22.3+git.401.c70158430cc-160000.2.2 -> 4.22.5+git.431.dc5a539f124-160000.1.1)",
+      "severity": "critical",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20203-1-libopenjp2-7-72",
+      "summary": "Security update for openjpeg2 (libopenjp2-7 2.5.3-160000.2.2 -> 2.5.3-160000.3.1)",
+      "severity": "low",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20164-1-libopenssl3-73",
+      "summary": "Security update for openssl-3 (libopenssl3 3.5.0-160000.3.2 -> 3.5.0-160000.4.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20152-1-libopenssl3-74",
+      "summary": "Security update for openssl-3 (libopenssl3 3.5.0-160000.3.2 -> 3.5.0-160000.5.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20017-1-libpng16-16-75",
+      "summary": "Security update for libpng16 (libpng16-16 1.6.44-160000.2.2 -> 1.6.44-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20083-1-libpng16-16-76",
+      "summary": "Security update for libpng16 (libpng16-16 1.6.44-160000.2.2 -> 1.6.44-160000.4.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20254-1-libpython3_13-1_0-77",
+      "summary": "Security update for python313 (libpython3_13-1_0 3.13.5-160000.2.2 -> 3.13.12-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20081-1-libpython3_13-1_0-78",
+      "summary": "Security update for python313 (libpython3_13-1_0 3.13.5-160000.2.2 -> 3.13.11-160000.1.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20142-1-libsoup-3_0-0-79",
+      "summary": "Security update for libsoup (libsoup-3_0-0 3.6.5-160000.2.2 -> 3.6.5-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20186-1-libsoup-3_0-0-80",
+      "summary": "Security update for libsoup (libsoup-3_0-0 3.6.5-160000.2.2 -> 3.6.5-160000.4.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20049-1-libtiff6-81",
+      "summary": "Security update for tiff (libtiff6 4.7.0-160000.2.2 -> 4.7.1-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20141-1-libudisks2-0-82",
+      "summary": "Security update for udisks2 (libudisks2-0 2.10.1-160000.2.2 -> 2.10.1-160000.3.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20141-1-libudisks2-0_btrfs-83",
+      "summary": "Security update for udisks2 (libudisks2-0_btrfs 2.10.1-160000.2.2 -> 2.10.1-160000.3.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20178-1-libxml2-2-84",
+      "summary": "Security update for libxml2 (libxml2-2 2.13.8-160000.2.2 -> 2.13.8-160000.3.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20312-1-libxml2-2-85",
+      "summary": "Security update for libxml2, libxslt (libxml2-2 2.13.8-160000.2.2 -> 2.13.8-160000.4.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20178-1-libxml2-tools-86",
+      "summary": "Security update for libxml2 (libxml2-tools 2.13.8-160000.2.2 -> 2.13.8-160000.3.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20312-1-libxml2-tools-87",
+      "summary": "Security update for libxml2, libxslt (libxml2-tools 2.13.8-160000.2.2 -> 2.13.8-160000.4.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20312-1-libxslt-tools-88",
+      "summary": "Security update for libxml2, libxslt (libxslt-tools 1.1.43-160000.3.1 -> 1.1.43-160000.4.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20312-1-libxslt1-89",
+      "summary": "Security update for libxml2, libxslt (libxslt1 1.1.43-160000.3.1 -> 1.1.43-160000.4.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20122-1-openssh-askpass-gnome-90",
+      "summary": "Security update for openssh (openssh-askpass-gnome 10.0p2-160000.2.2 -> 10.0p2-160000.3.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20164-1-openssl-3-91",
+      "summary": "Security update for openssl-3 (openssl-3 3.5.0-160000.3.2 -> 3.5.0-160000.4.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20152-1-openssl-3-92",
+      "summary": "Security update for openssl-3 (openssl-3 3.5.0-160000.3.2 -> 3.5.0-160000.5.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20254-1-python313-93",
+      "summary": "Security update for python313 (python313 3.13.5-160000.2.2 -> 3.13.12-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20081-1-python313-94",
+      "summary": "Security update for python313 (python313 3.13.5-160000.2.2 -> 3.13.11-160000.1.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20254-1-python313-base-95",
+      "summary": "Security update for python313 (python313-base 3.13.5-160000.2.2 -> 3.13.12-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20081-1-python313-base-96",
+      "summary": "Security update for python313 (python313-base 3.13.5-160000.2.2 -> 3.13.11-160000.1.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20254-1-python313-curses-97",
+      "summary": "Security update for python313 (python313-curses 3.13.5-160000.2.2 -> 3.13.12-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20081-1-python313-curses-98",
+      "summary": "Security update for python313 (python313-curses 3.13.5-160000.2.2 -> 3.13.11-160000.1.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20254-1-python313-dbm-99",
+      "summary": "Security update for python313 (python313-dbm 3.13.5-160000.2.2 -> 3.13.12-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20081-1-python313-dbm-100",
+      "summary": "Security update for python313 (python313-dbm 3.13.5-160000.2.2 -> 3.13.11-160000.1.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20312-1-python313-libxml2-101",
+      "summary": "Security update for libxml2, libxslt (python313-libxml2 2.13.8-160000.3.1 -> 2.13.8-160000.4.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20202-1-python313-pip-102",
+      "summary": "Security update for python-pip (python313-pip 25.0.1-160000.2.2 -> 25.0.1-160000.3.1)",
+      "severity": "low",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20171-1-qemu-guest-agent-103",
+      "summary": "Security update for qemu (qemu-guest-agent 10.0.3-160000.1.2 -> 10.0.7-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20048-1-samba-client-104",
+      "summary": "Security update for samba (samba-client 4.22.3+git.401.c70158430cc-160000.2.2 -> 4.22.5+git.431.dc5a539f124-160000.1.1)",
+      "severity": "critical",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2025:20048-1-samba-client-libs-105",
+      "summary": "Security update for samba (samba-client-libs 4.22.3+git.401.c70158430cc-160000.2.2 -> 4.22.5+git.431.dc5a539f124-160000.1.1)",
+      "severity": "critical",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20018-1-typelib-1_0-GLib-2_0-106",
+      "summary": "Security update for glib2 (typelib-1_0-GLib-2_0 2.84.3-160000.2.2 -> 2.84.4-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20150-1-typelib-1_0-GLib-2_0-107",
+      "summary": "Security update for glib2 (typelib-1_0-GLib-2_0 2.84.3-160000.2.2 -> 2.84.4-160000.2.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20018-1-typelib-1_0-GModule-2_0-108",
+      "summary": "Security update for glib2 (typelib-1_0-GModule-2_0 2.84.3-160000.2.2 -> 2.84.4-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20150-1-typelib-1_0-GModule-2_0-109",
+      "summary": "Security update for glib2 (typelib-1_0-GModule-2_0 2.84.3-160000.2.2 -> 2.84.4-160000.2.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20018-1-typelib-1_0-GObject-2_0-110",
+      "summary": "Security update for glib2 (typelib-1_0-GObject-2_0 2.84.3-160000.2.2 -> 2.84.4-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20150-1-typelib-1_0-GObject-2_0-111",
+      "summary": "Security update for glib2 (typelib-1_0-GObject-2_0 2.84.3-160000.2.2 -> 2.84.4-160000.2.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20084-1-typelib-1_0-GdkPixbuf-2_0-112",
+      "summary": "Security update for gdk-pixbuf (typelib-1_0-GdkPixbuf-2_0 2.42.12-160000.2.2 -> 2.42.12-160000.3.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20018-1-typelib-1_0-Gio-2_0-113",
+      "summary": "Security update for glib2 (typelib-1_0-Gio-2_0 2.84.3-160000.2.2 -> 2.84.4-160000.1.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20150-1-typelib-1_0-Gio-2_0-114",
+      "summary": "Security update for glib2 (typelib-1_0-Gio-2_0 2.84.3-160000.2.2 -> 2.84.4-160000.2.1)",
+      "severity": "high",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20141-1-udisks2-115",
+      "summary": "Security update for udisks2 (udisks2 2.10.1-160000.2.2 -> 2.10.1-160000.3.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    },
+    {
+      "id": "openSUSE-SU-2026:20141-1-udisks2-bash-completion-116",
+      "summary": "Security update for udisks2 (udisks2-bash-completion 2.10.1-160000.2.2 -> 2.10.1-160000.3.1)",
+      "severity": "medium",
+      "status": "fixed",
+      "source": "trivy"
+    }
+  ],
+  "summary": {
+    "critical": 3,
+    "high": 83,
+    "medium": 28,
+    "low": 2,
+    "unknown": 0,
+    "total": 116
+  },
+  "metadata": {
+    "scan_timestamp": "2026-03-08T23:34:26.629Z",
+    "host_id": "suse-vm",
+    "distro": "opensuse-leap",
+    "distro_version": "16.0",
+    "kernel_version": "6.12.0-160000.5-default",
+    "environment_type": "unknown",
+    "host_role": "unknown",
+    "package_manager": "zypper",
+    "cpu_count": 4,
+    "memory_gb": 3.8,
+    "installed_package_count": 1495,
+    "running_service_count": 35,
+    "scan_seconds": 4.25,
+    "scanner_version": "0.69.0",
+    "scanner_dataset_version": "unknown"
+  }
+}

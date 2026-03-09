@@ -4,6 +4,7 @@
 
 import cockpit from "cockpit";
 
+import { createReportMetadata } from '../report-metadata';
 import type {
     SecurityFinding,
     SecurityProvider,
@@ -20,6 +21,7 @@ interface OpenScapScanOptions {
 }
 
 let cachedReport: SecurityReport | null = null;
+let cachedOpenScapVersion: string | null = null;
 
 function normalizeSeverity(value: string | undefined): SecuritySeverity {
     const severity = (value || "").toLowerCase();
@@ -149,6 +151,33 @@ function getOpenScapCommand(source: string): string[] {
     return ["/bin/sh", "-ec", script, "sh", source];
 }
 
+function getOpenScapVersionCommand(): string[] {
+    return ["oscap", "--version"];
+}
+
+function parseOpenScapVersion(output: string): string {
+    const versionMatch = output.match(/(?:^|\s)(\d+\.\d+\.\d+)\b/);
+    if (versionMatch && versionMatch[1])
+        return versionMatch[1];
+
+    const firstLine = output.split('\n')
+            .map(line => line.trim())
+            .find(Boolean) || "";
+    if (!firstLine)
+        return "unknown";
+
+    return firstLine;
+}
+
+async function getOpenScapVersion(): Promise<string> {
+    if (cachedOpenScapVersion)
+        return cachedOpenScapVersion;
+
+    const output = await cockpit.spawn(getOpenScapVersionCommand(), { err: "message", environ: ["LC_ALL=C"] }).catch(() => "");
+    cachedOpenScapVersion = parseOpenScapVersion(output.toString());
+    return cachedOpenScapVersion;
+}
+
 export async function listOpenScapSources(): Promise<string[]> {
     const script = [
         "command -v oscap >/dev/null 2>&1 || exit 127",
@@ -180,15 +209,25 @@ export class OpenScapProvider implements SecurityProvider {
     }
 
     async getReport(): Promise<SecurityReport> {
+        const startedAt = Date.now();
         const output = await cockpit.spawn(getOpenScapCommand(this.source), { err: "message", environ: ["LC_ALL=C"] })
                 .catch(error => Promise.reject(new Error(formatSpawnError(error))));
 
         const findings = parseArfResult(output.toString());
+        const generatedAt = new Date().toISOString();
+        const scanSeconds = (Date.now() - startedAt) / 1000;
+        const metadata = await createReportMetadata({
+            generatedAt,
+            scanSeconds,
+            scannerVersion: await getOpenScapVersion(),
+            scannerDatasetVersion: "unknown",
+        });
         const report: SecurityReport = {
             provider: "openscap",
-            generatedAt: new Date().toISOString(),
+            generatedAt,
             findings,
             summary: createSummary(findings),
+            metadata,
         };
 
         cachedReport = report;

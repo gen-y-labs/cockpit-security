@@ -4,6 +4,7 @@
 
 import cockpit from "cockpit";
 
+import { createReportMetadata } from '../report-metadata';
 import type {
     SecurityFinding,
     SecurityProvider,
@@ -12,6 +13,7 @@ import type {
 } from '../security-report';
 
 const APT_COMMAND = ["apt-get", "-s", "upgrade"];
+const APT_VERSION_COMMAND = ["apt-get", "--version"];
 
 function createSummary(findings: SecurityFinding[]): SecuritySummary {
     const summary = {
@@ -59,18 +61,40 @@ function formatSpawnError(error: unknown): string {
     return cockpit.gettext("Unknown command error");
 }
 
+function parseAptVersion(output: string): string {
+    const firstLine = output.split('\n')
+            .map(line => line.trim())
+            .find(Boolean) || "";
+    if (!firstLine)
+        return "unknown";
+
+    return firstLine;
+}
+
 export class NativeAptProvider implements SecurityProvider {
     async getReport(): Promise<SecurityReport> {
+        const startedAt = Date.now();
         const output = await cockpit.spawn(APT_COMMAND, { err: "message", environ: ["LC_ALL=C"] })
                 .catch(error => Promise.reject(new Error(formatSpawnError(error))));
 
         const findings = parseAptOutput(output.toString());
+        const generatedAt = new Date().toISOString();
+        const scanSeconds = (Date.now() - startedAt) / 1000;
+        const scannerVersionOutput = await cockpit.spawn(APT_VERSION_COMMAND, { err: "message", environ: ["LC_ALL=C"] }).catch(() => "");
+        const metadata = await createReportMetadata({
+            generatedAt,
+            scanSeconds,
+            packageManager: "apt",
+            scannerVersion: parseAptVersion(scannerVersionOutput.toString()),
+            scannerDatasetVersion: "unknown",
+        });
 
         return {
             provider: "native-apt",
-            generatedAt: new Date().toISOString(),
+            generatedAt,
             findings,
             summary: createSummary(findings),
+            metadata,
         };
     }
 }
