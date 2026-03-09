@@ -156,6 +156,16 @@ node tools/collect-normalized-host-record.mjs \
   --out /path/to/normalized-host-security-record.json
 ```
 
+Example (openSUSE report set):
+
+```bash
+node tools/collect-normalized-host-record.mjs \
+  --patch reports/openSuSE-leap-16/vulnerabilities-native-zypper.json \
+  --trivy reports/openSuSE-leap-16/vulnerabilities-trivy.json \
+  --openscap reports/openSuSE-leap-16/vulnerabilities-openscap-ssg-sle16-ds.json \
+  --out reports/openSuSE-leap-16/normalized-host-security-record.json
+```
+
 ### Optional Metadata Input
 
 Use `--metadata` only when you want to override or supplement report metadata:
