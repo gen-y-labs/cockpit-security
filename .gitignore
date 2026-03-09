@@ -18,6 +18,7 @@
 /bots
 /cockpit-*.spec
 /cockpit-*.tar.xz
+/debian/
 /cockpit-navigator.spec
 /dist/
 /metafile.json
@@ -26,7 +27,9 @@
 /node_modules/
 /runtime-npm-modules.txt
 /tmp/
-/tools/
+/tools/*
+!/tools/collect-normalized-host-record.mjs
+!/tools/host-security-normalizer.mjs
 
 # subdirs (/subdir/...)
 /packaging/arch/PKGBUILD

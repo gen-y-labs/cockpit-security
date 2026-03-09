@@ -1,9 +1,9 @@
-pkgname=cockpit-starter-kit
+pkgname=cockpit-security
 pkgver=VERSION
 pkgrel=1
-pkgdesc='Cockpit Starter Kit Example Module'
+pkgdesc='Cockpit module for viewing and tracking host vulnerabilities'
 arch=('x86_64')
-url='https://github.com/cockpit-project/starter-kit'
+url='https://github.com/cockpit-project/security'
 license=(LGPL)
 source=("SOURCE")
 sha256sums=('SKIP')

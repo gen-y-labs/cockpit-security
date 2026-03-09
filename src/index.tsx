@@ -4,7 +4,6 @@
  * Copyright (C) 2017 Red Hat, Inc.
  */
 
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import "cockpit-dark-theme";

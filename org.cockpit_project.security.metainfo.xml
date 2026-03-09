@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+  <id>org.cockpit_project.security</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <name>Security</name>
+  <summary>View and track host vulnerabilities in Cockpit</summary>
+  <description>
+    <p>
+      Cockpit Security provides a focused interface for vulnerability visibility.
+      It helps administrators review security findings and monitor host risk
+      from the Cockpit web console.
+    </p>
+  </description>
+  <extends>org.cockpit_project.cockpit</extends>
+  <launchable type="cockpit-manifest">security</launchable>
+  <url type="homepage">https://github.com/cockpit-project/security</url>
+  <url type="bugtracker">https://github.com/cockpit-project/security/issues</url>
+  <update_contact>cockpit-devel_AT_lists.fedorahosted.org</update_contact>
+  <developer id="org.cockpit-project">
+    <name>Cockpit Project</name>
+  </developer>
+</component>

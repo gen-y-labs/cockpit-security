@@ -1,0 +1,318 @@
+{
+  "provider": "native-zypper",
+  "generatedAt": "2026-03-08T23:33:26.038Z",
+  "findings": [
+    {
+      "id": "openSUSE-Leap-16.0-22-1",
+      "summary": "Security update for samba",
+      "status": "needed",
+      "severity": "critical",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-23-2",
+      "summary": "Security update for tiff",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-29-3",
+      "summary": "Security update for expat",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-50-4",
+      "summary": "Security update for the Linux Kernel",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-57-5",
+      "summary": "Security update for curl",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-58-6",
+      "summary": "Security update for the Linux Kernel",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-81-7",
+      "summary": "Security update for openssh",
+      "status": "needed",
+      "severity": "medium",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-106-8",
+      "summary": "Security update for grub2",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-107-9",
+      "summary": "Security update for openssl-3",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-112-10",
+      "summary": "Security update for qemu",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-113-11",
+      "summary": "Security update for the Linux Kernel",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-127-12",
+      "summary": "Security update for avahi",
+      "status": "needed",
+      "severity": "medium",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-131-13",
+      "summary": "Security update for libpng16",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-132-14",
+      "summary": "Security update for glib2",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-138-15",
+      "summary": "Security update for gpg2",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-140-16",
+      "summary": "Security update for curl",
+      "status": "needed",
+      "severity": "medium",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-144-17",
+      "summary": "Security update for bind",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-170-18",
+      "summary": "Security update for python313",
+      "status": "needed",
+      "severity": "medium",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-172-19",
+      "summary": "Security update for libpng16",
+      "status": "needed",
+      "severity": "medium",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-173-20",
+      "summary": "Security update for gdk-pixbuf",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-180-21",
+      "summary": "Security update for bind",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-193-22",
+      "summary": "Security update for avahi",
+      "status": "needed",
+      "severity": "medium",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-218-23",
+      "summary": "Security update for glibc",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-221-24",
+      "summary": "Security update for gpg2",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-226-25",
+      "summary": "Security update for udisks2",
+      "status": "needed",
+      "severity": "medium",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-227-26",
+      "summary": "Security update for libsoup",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-230-27",
+      "summary": "Security update for the Linux Kernel",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-235-28",
+      "summary": "Security update for glib2",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-237-29",
+      "summary": "Security update for openssl-3",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-242-30",
+      "summary": "Security update for cups",
+      "status": "needed",
+      "severity": "critical",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-244-31",
+      "summary": "Security update for libxml2",
+      "status": "needed",
+      "severity": "medium",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-248-32",
+      "summary": "Security update for cockpit",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-250-33",
+      "summary": "Security update for libsoup",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-256-34",
+      "summary": "Security update for python-pip",
+      "status": "needed",
+      "severity": "low",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-257-35",
+      "summary": "Security update for openjpeg2",
+      "status": "needed",
+      "severity": "low",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-291-36",
+      "summary": "Security update for cockpit-machines, cockpit",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-300-37",
+      "summary": "Security update for python313",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-325-38",
+      "summary": "Security update for the Linux Kernel",
+      "status": "needed",
+      "severity": "high",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-344-39",
+      "summary": "Security update for expat",
+      "status": "needed",
+      "severity": "medium",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-353-40",
+      "summary": "Security update for libxml2, libxslt",
+      "status": "needed",
+      "severity": "medium",
+      "source": "native-zypper"
+    },
+    {
+      "id": "openSUSE-Leap-16.0-362-41",
+      "summary": "Security update for gstreamer-rtsp-server, gstreamer-plugins-ugly, gstreamer-plugins-rs, gstreamer-plugins-libav, gstreamer-plugins-good, gstreamer-plugins-base, gstreamer-plugins-bad, gstreamer-docs, gstreamer-devtools, gstreamer",
+      "status": "needed",
+      "severity": "medium",
+      "source": "native-zypper"
+    }
+  ],
+  "summary": {
+    "critical": 2,
+    "high": 26,
+    "medium": 11,
+    "low": 2,
+    "unknown": 0,
+    "total": 41
+  },
+  "metadata": {
+    "scan_timestamp": "2026-03-08T23:33:26.038Z",
+    "host_id": "suse-vm",
+    "distro": "opensuse-leap",
+    "distro_version": "16.0",
+    "kernel_version": "6.12.0-160000.5-default",
+    "environment_type": "unknown",
+    "host_role": "unknown",
+    "package_manager": "zypper",
+    "cpu_count": 4,
+    "memory_gb": 3.8,
+    "installed_package_count": 1495,
+    "running_service_count": 35,
+    "scan_seconds": 0.27,
+    "scanner_version": "zypper 1.14.93",
+    "scanner_dataset_version": "unknown"
+  }
+}

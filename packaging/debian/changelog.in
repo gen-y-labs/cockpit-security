@@ -1,0 +1,5 @@
+cockpit-security (@VERSION@) unstable; urgency=medium
+
+  * Build from upstream source release.
+
+ -- Cockpit Security Maintainers <cockpit-devel@lists.fedorahosted.org>  @DATE@
