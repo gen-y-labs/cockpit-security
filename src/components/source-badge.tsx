@@ -15,6 +15,7 @@ type SourceBadgeTone = "green" | "blue" | "purple" | "grey";
 const SOURCE_LABELS: Record<string, string> = {
     "native-zypper": "native-zypper",
     "native-apt": "native-apt",
+    "native-dnf": "native-dnf",
     trivy: "trivy",
     openscap: "openscap",
 };
@@ -22,6 +23,7 @@ const SOURCE_LABELS: Record<string, string> = {
 const SOURCE_BADGE_COLORS: Record<string, SourceBadgeTone> = {
     "native-zypper": "green",
     "native-apt": "blue",
+    "native-dnf": "blue",
     trivy: "purple",
     openscap: "blue",
 };

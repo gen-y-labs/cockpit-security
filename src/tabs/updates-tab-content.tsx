@@ -70,7 +70,7 @@ export function UpdatesTabContent({ loading, error, report, lastUpdated, onRefre
     }, [report]);
 
     const sourceLegendItems = useMemo(() => {
-        const sourceOrder = ["native-zypper", "native-apt", "trivy"];
+        const sourceOrder = ["native-zypper", "native-dnf", "native-apt", "trivy"];
         const sources = sourceOptions.length > 0 ? sourceOptions : sourceOrder.filter(source => source.startsWith("native-"));
         const getOrder = (source: string) => {
             const index = sourceOrder.indexOf(source);

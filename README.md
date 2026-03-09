@@ -12,8 +12,9 @@ It follows Cockpit UI conventions and keeps scan execution logic separate from U
 
 - Cockpit server/runtime
 - For `Updates` tab:
+  - Fedora/RHEL-family: `dnf`
   - openSUSE: `zypper`
-  - Ubuntu/Debian: `apt`
+  - Ubuntu/Debian-family: `apt`
 - For `Vulnerabilities` tab:
   - `trivy` installed on host
 - For `Compliance` tab:
@@ -44,6 +45,15 @@ sudo make install
 sudo apt update
 sudo apt install -y cockpit nodejs npm make gettext
 sudo apt install -y openscap-scanner ssg-base
+# optional for Vulnerabilities tab
+# install trivy from your preferred repository
+```
+
+## Install (Fedora)
+
+```bash
+sudo dnf install -y cockpit nodejs npm make gettext
+sudo dnf install -y openscap-scanner scap-security-guide
 # optional for Vulnerabilities tab
 # install trivy from your preferred repository
 ```
@@ -113,7 +123,7 @@ Normalized output also includes `compliance_profile`, indicating which OpenSCAP 
 
 Expected filename candidates in `--host-dir`:
 
-- patch: `patch-report.json` or `vulnerabilities-native-zypper.json` or `vulnerabilities-native-apt.json`
+- patch: `patch-report.json` or `vulnerabilities-native-zypper.json` or `vulnerabilities-native-dnf.json` or `vulnerabilities-native-apt.json`
 - Trivy: `trivy-report.json` or `vulnerabilities-trivy.json`
 - OpenSCAP: `openscap-report.json` or any `vulnerabilities-openscap*.json`
 

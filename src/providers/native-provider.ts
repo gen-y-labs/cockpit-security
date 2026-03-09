@@ -6,6 +6,7 @@ import cockpit from "cockpit";
 
 import type { SecurityProvider } from '../security-report';
 import { NativeAptProvider } from './native-apt-provider';
+import { NativeDnfProvider } from './native-dnf-provider';
 import { NativeZypperProvider } from './native-zypper-provider';
 
 interface OsReleaseInfo {
@@ -50,6 +51,25 @@ function isAptBasedDistro(osInfo: OsReleaseInfo): boolean {
            osInfo.idLike.includes("ubuntu") || osInfo.idLike.includes("debian");
 }
 
+function isDnfBasedDistro(osInfo: OsReleaseInfo): boolean {
+    const fingerprint = `${osInfo.id} ${osInfo.idLike}`;
+    return fingerprint.includes("fedora") ||
+           fingerprint.includes("rhel") ||
+           fingerprint.includes("centos") ||
+           fingerprint.includes("rocky") ||
+           fingerprint.includes("almalinux") ||
+           fingerprint.includes("amzn");
+}
+
+async function commandExists(command: string): Promise<boolean> {
+    try {
+        const output = await cockpit.spawn(["/bin/sh", "-ec", `command -v ${command} >/dev/null 2>&1 && echo yes || true`]);
+        return output.trim() === "yes";
+    } catch {
+        return false;
+    }
+}
+
 export async function getNativeProvider(): Promise<SecurityProvider> {
     try {
         const osReleaseContent = await cockpit.file('/etc/os-release').read();
@@ -57,9 +77,16 @@ export async function getNativeProvider(): Promise<SecurityProvider> {
 
         if (isAptBasedDistro(osInfo))
             return new NativeAptProvider();
+        if (isDnfBasedDistro(osInfo))
+            return new NativeDnfProvider();
     } catch {
-        // Fall back to zypper provider to preserve openSUSE behavior.
+        // Fall through to command-based detection.
     }
+
+    if (await commandExists("apt-get"))
+        return new NativeAptProvider();
+    if (await commandExists("dnf"))
+        return new NativeDnfProvider();
 
     return new NativeZypperProvider();
 }
